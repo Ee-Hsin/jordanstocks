@@ -7,11 +7,12 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import { HomePage } from "./pages/homePage"
+import ErrorPage from "./components/ErrorPage"
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Root />}>
+      <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route index element={<HomePage />} />
       </Route>
     )
