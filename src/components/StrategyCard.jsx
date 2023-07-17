@@ -1,6 +1,10 @@
 export const StrategyCard = ({ title, content, image }) => {
   return (
-    <div className="w-full md:mx-5 p-2 md:hover:scale-105 h-full">
+    <div
+      className="w-full h-full 
+    p-2 pb-6 lg:p-2 md:mx-3 md:hover:scale-105 
+    mb-5 lg:mb-2 border-b-2 border-[#4B491A] lg:border-none"
+    >
       {/* put image in div, set minimum height */}
       <div className="min-h-[200px]">
         <img
