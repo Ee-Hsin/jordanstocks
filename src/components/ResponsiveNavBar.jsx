@@ -20,15 +20,15 @@ import { Link } from "react-router-dom"
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <a
-        href="/#strategy"
+      <Link
+        to="/strategy"
         className="text-blue-gray-900 font-serif font-medium text-md"
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           <GlobeAsiaAustraliaIcon className="h-[18px] w-[18px]" />
           Strategy
         </ListItem>
-      </a>
+      </Link>
 
       <Link
         to="/performance"
@@ -79,7 +79,7 @@ export default function ResponsiveNavBar() {
   return (
     <Navbar className="mx-auto max-w-screen-xl px-4 py-3 sticky top-0 rounded-none min-w-full">
       <div className="flex items-center justify-between text-blue-gray-900 scroll-smooth">
-        <Link href="/" className="scroll-smooth">
+        <Link to="/" className="scroll-smooth">
           <h1>Seraya Investment Partnership </h1>
         </Link>
         <div className="hidden lg:block">
