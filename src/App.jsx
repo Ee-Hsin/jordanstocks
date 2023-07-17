@@ -8,12 +8,18 @@ import {
 } from "react-router-dom"
 import { HomePage } from "./pages/homePage"
 import ErrorPage from "./components/ErrorPage"
+import { PerformancePage } from "./pages/PerformancePage"
+import { LettersPage } from "./pages/LettersPage"
+import { BlogPage } from "./pages/BlogPage"
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route index element={<HomePage />} />
+        <Route path="/performance" element={<PerformancePage />} />
+        <Route path="/letters" element={<LettersPage />} />
+        <Route path="/blog" element={<BlogPage />} />
       </Route>
     )
   )
