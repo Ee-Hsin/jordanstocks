@@ -114,9 +114,6 @@ export default function ResponsiveNavBar() {
           <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
             Sign In
           </Button>
-          <Button variant="gradient" size="sm" fullWidth>
-            Sign Up
-          </Button>
         </div>
       </Collapse>
     </Navbar>
