@@ -4,7 +4,7 @@ import background from "../img/MalaysiaRainforest.jpg"
 export const Hero = () => {
   return (
     <div
-      className="min-w-full h-[90vh] text-center flex flex-col justify-center"
+      className="absolute top-0 z-0 min-w-full h-[100vh] text-center flex flex-col justify-center"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "initial",

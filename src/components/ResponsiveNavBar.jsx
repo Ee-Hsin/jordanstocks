@@ -77,7 +77,7 @@ export default function ResponsiveNavBar() {
   }, [])
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-3 sticky top-0 rounded-none min-w-full">
+    <Navbar className="mx-auto max-w-screen-xl px-4 py-3 sticky top-0 rounded-none min-w-full z-10">
       <div className="flex items-center justify-between text-blue-gray-900 scroll-smooth">
         <Link to="/" className="scroll-smooth">
           <h1>Seraya Investment Partnership </h1>
