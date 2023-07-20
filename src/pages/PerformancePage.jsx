@@ -4,7 +4,7 @@ import { PerformanceTable } from "../components/PerformanceTable"
 
 export const PerformancePage = () => {
   return (
-    <div>
+    <div className="pt-24">
       <PerformanceTable />
     </div>
   )
