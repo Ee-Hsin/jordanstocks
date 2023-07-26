@@ -8,7 +8,6 @@ import {
 } from "react-router-dom"
 import { HomePage } from "./pages/homePage"
 import ErrorPage from "./components/ErrorPage"
-import { PerformancePage } from "./pages/PerformancePage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
 import { StrategyPage } from "./pages/StrategyPage"
@@ -19,7 +18,6 @@ function App() {
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
         <Route index element={<HomePage />} />
         <Route path="strategy" element={<StrategyPage />} />
-        <Route path="performance" element={<PerformancePage />} />
         <Route path="letters" element={<LettersPage />}></Route>
         <Route path="blog" element={<BlogPage />} />
       </Route>

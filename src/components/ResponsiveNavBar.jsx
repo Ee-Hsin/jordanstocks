@@ -29,16 +29,6 @@ function NavList() {
           Strategy
         </ListItem>
       </Link>
-
-      <Link
-        to="/performance"
-        className="text-blue-gray-900 font-serif font-medium text-md"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <ChartBarSquareIcon className="h-[18px] w-[18px]" />
-          Performance
-        </ListItem>
-      </Link>
       <Link
         to="/letters"
         className="text-blue-gray-900 font-serif font-medium text-md"
