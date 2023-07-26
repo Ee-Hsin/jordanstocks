@@ -9,13 +9,14 @@ import {
 } from "@material-tailwind/react"
 import {
   GlobeAsiaAustraliaIcon,
-  ChartBarSquareIcon,
   Bars3Icon,
   XMarkIcon,
   FolderIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/outline"
 import { Link } from "react-router-dom"
+import { onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../firebase"
 
 function NavList() {
   return (
@@ -53,6 +54,27 @@ function NavList() {
 
 export default function ResponsiveNavBar() {
   const [openNav, setOpenNav] = useState(false)
+  const [signedIn, setSignedIn] = useState()
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setSignedIn(true)
+      } else {
+        setSignedIn(false)
+      }
+    })
+  }, [signedIn])
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Signed out")
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -75,16 +97,30 @@ export default function ResponsiveNavBar() {
         <div className="hidden lg:block">
           <NavList />
         </div>
-        <div className="hidden gap-2 lg:flex">
-          <Button
-            variant="text"
-            size="sm"
-            color="blue-gray"
-            className="font-serif"
-          >
-            Partner Login
-          </Button>
-        </div>
+        <Link to="login">
+          <div className="hidden gap-2 lg:flex">
+            {signedIn ? (
+              <Button
+                variant="text"
+                size="sm"
+                color="blue-gray"
+                className="font-serif"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button
+                variant="text"
+                size="sm"
+                color="blue-gray"
+                className="font-serif"
+              >
+                Partner Login
+              </Button>
+            )}
+          </div>
+        </Link>
         <IconButton
           variant="text"
           color="blue-gray"
@@ -101,9 +137,24 @@ export default function ResponsiveNavBar() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            Sign In
-          </Button>
+          <Link to="login" className="w-full">
+            {signedIn ? (
+              <Button
+                variant="outlined"
+                size="sm"
+                color="blue-gray"
+                className="font-serif"
+                onClick={handleSignOut}
+                fullWidth
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+                Partner Login
+              </Button>
+            )}
+          </Link>
         </div>
       </Collapse>
     </Navbar>
