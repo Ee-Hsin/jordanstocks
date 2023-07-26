@@ -57,13 +57,17 @@ export default function ResponsiveNavBar() {
   const [signedIn, setSignedIn] = useState()
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setSignedIn(true)
+        // console.log(1)
       } else {
         setSignedIn(false)
+        // console.log(2)
       }
     })
+
+    return () => unsubscribe()
   }, [signedIn])
 
   const handleSignOut = () => {

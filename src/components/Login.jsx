@@ -1,19 +1,20 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../firebase"
+import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
   const emailRef = useRef()
   const pswRef = useRef()
+  const [err, setErr] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // TODO: Add some verification for Email to ensure it is proper
-    // TODO: Add some rules for Password such as Minimum length
-
-    //TODO: Add some UI feedback for if email/password is not up to standard
+    if (!emailRef.current.value) return
+    if (!pswRef.current.value) return
 
     signInWithEmailAndPassword(
       auth,
@@ -24,12 +25,12 @@ export const Login = () => {
         console.log(userCredential)
         emailRef.current.value = ""
         pswRef.current.value = ""
-        //TODO: Redirect to a different page (set it to strategy for now)
+        setErr(false)
+        navigate("/letters")
       })
       .catch((err) => {
         console.log(err)
-        //TODO: Add some UI changes for if there was an error when signing in
-        // Display: wrong email or Password.
+        setErr(true)
       })
   }
 
@@ -89,7 +90,11 @@ export const Login = () => {
               />
             </div>
           </div>
-          {/* TODO: Add Forgot Password functionality */}
+          {err && (
+            <p className="text-red-400">
+              Your username or password is incorrect
+            </p>
+          )}
           <div className="text-sm">
             <a
               href="#"

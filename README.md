@@ -2,7 +2,6 @@
 
 TODO:
 
-1. Firebase authentication to enable users to login
 2. Redesign everything with TailwindUI components
 3. Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
 4. Make Seraya hero look better on iphone devices (blocked by background leaf rn)
