@@ -2,10 +2,9 @@
 
 TODO:
 
-2. Redesign everything with TailwindUI components
-3. Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
-4. Make Seraya hero look better on iphone devices (blocked by background leaf rn)
-5. Add footer with Contact Us
+1. Add footer with Contact Us
+2. Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
+3. Add a Seraya Logo instead of FloatUI right now
 
 Additional:
 

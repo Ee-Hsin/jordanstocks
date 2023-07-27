@@ -9,7 +9,7 @@ import { HomePage } from "./pages/homePage"
 import ErrorPage from "./components/ErrorPage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
-import { Login } from "./components/Login"
+import { SignIn } from "./components/Signin"
 import { NavBar } from "./components/NavBar"
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="letters" element={<LettersPage />} />
         <Route path="blog" element={<BlogPage />} />
-        <Route path="login" element={<Login />} />
+        <Route path="signin" element={<SignIn />} />
       </Route>
     )
   )
