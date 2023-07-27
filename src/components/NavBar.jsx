@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import { auth } from "../firebase"
+import { useMediaPredicate } from "react-media-hook"
 
 const navigation = [
   { title: "Letters", path: "/letters" },
@@ -10,8 +11,18 @@ const navigation = [
 ]
 
 export const NavBar = () => {
-  const [openNav, setOpenNav] = useState(true)
+  const [openNav, setOpenNav] = useState(false)
   const [loggedIn, setLoggedIn] = useState()
+
+  const mediumAndAbove = useMediaPredicate("(min-width: 768px)")
+
+  //   We use this to ensure that every time the window is expanded, the hamburger closes and
+  // the styles return to full screen mode.
+  useEffect(() => {
+    if (mediumAndAbove) {
+      setOpenNav(false)
+    }
+  }, [mediumAndAbove])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -87,7 +98,7 @@ export const NavBar = () => {
           </div>
         </div>
         <div
-          className={`flex-1 pb-3 pt-8 w-[96%] bg-white md:block md:pb-0 md:mt-0 ${
+          className={`flex-1 pb-3 pt-8 w-[100%] bg-white md:block md:pb-0 md:mt-0 ${
             openNav ? "absolute px-3" : "hidden"
           }`}
         >
