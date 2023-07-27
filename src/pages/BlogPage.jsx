@@ -1,4 +1,5 @@
 import { blogPosts } from "../content"
+import { Link } from "react-router-dom"
 
 export const BlogPage = () => {
   return (
@@ -42,9 +43,9 @@ export const BlogPage = () => {
           </form>
         </div>
         <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((items, key) => (
-            <li className="w-full mx-auto group sm:max-w-sm" key={key}>
-              <a href={items.href}>
+          {blogPosts.map((items) => (
+            <li className="w-full mx-auto group sm:max-w-sm" key={items.id}>
+              <Link to={items.id}>
                 <img
                   src={items.img}
                   loading="lazy"
@@ -62,7 +63,7 @@ export const BlogPage = () => {
                     {items.desc}
                   </p>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

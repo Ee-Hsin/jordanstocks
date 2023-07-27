@@ -49,7 +49,7 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className="bg-white border-b w-full md:text-sm md:border-none sticky top-0">
+    <nav className="bg-white border-b w-full md:text-sm md:border-none sticky z-30 top-0">
       <div className={`items-center max-w-screen-xl mx-auto md:flex md:px-8`}>
         <div className="flex items-center justify-between py-3 md:py-5 md:block px-4">
           <Link to="/">

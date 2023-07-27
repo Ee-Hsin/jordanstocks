@@ -20,8 +20,10 @@ function App() {
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
         <Route index element={<HomePage />} />
         <Route path="letters" element={<LettersPage />} />
-        <Route path="blog" element={<BlogPage />} />
-        <Route path="blog/:blogId" element={<Blog />} />
+        <Route path="blog">
+          <Route index element={<BlogPage />} />
+          <Route path=":blogId" element={<Blog />} />
+        </Route>
         <Route path="contact" element={<h1>Contact Us Page</h1>} />
         <Route path="signin" element={<SignIn />} />
       </Route>
