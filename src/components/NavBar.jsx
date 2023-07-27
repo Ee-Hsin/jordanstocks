@@ -6,6 +6,7 @@ import { auth } from "../firebase"
 const navigation = [
   { title: "Letters", path: "/letters" },
   { title: "Blog", path: "/blog" },
+  { title: "Contact Us", path: "/contact" },
 ]
 
 export const NavBar = () => {
@@ -37,9 +38,9 @@ export const NavBar = () => {
   }
 
   return (
-    <nav className="bg-white border-b w-full md:text-sm md:border-none sticky z-30 top-0">
-      <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+    <nav className="bg-white border-b w-full md:text-sm md:border-none sticky top-0">
+      <div className={`items-center max-w-screen-xl mx-auto md:flex md:px-8`}>
+        <div className="flex items-center justify-between py-3 md:py-5 md:block px-4">
           <Link to="/">
             <img
               src="https://www.floatui.com/logo.svg"
@@ -86,8 +87,8 @@ export const NavBar = () => {
           </div>
         </div>
         <div
-          className={`flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-            openNav ? "block" : "hidden"
+          className={`flex-1 pb-3 pt-8 w-[96%] bg-white md:block md:pb-0 md:mt-0 ${
+            openNav ? "absolute px-3" : "hidden"
           }`}
         >
           <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
