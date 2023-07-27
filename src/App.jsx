@@ -1,4 +1,3 @@
-import ResponsiveNavBar from "./components/ResponsiveNavBar"
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,6 +10,7 @@ import ErrorPage from "./components/ErrorPage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
 import { Login } from "./components/Login"
+import { NavBar } from "./components/NavBar"
 
 function App() {
   const router = createBrowserRouter(
@@ -30,7 +30,8 @@ function App() {
 const Layout = () => {
   return (
     <>
-      <ResponsiveNavBar />
+      {/* <ResponsiveNavBar /> */}
+      <NavBar />
       <Outlet />
       {/* Can put a footer here */}
     </>
