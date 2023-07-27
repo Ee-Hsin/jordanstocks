@@ -12,6 +12,7 @@ import { BlogPage } from "./pages/BlogPage"
 import { SignIn } from "./components/Signin"
 import { NavBar } from "./components/NavBar"
 import { Footer } from "./components/Footer"
+import { Blog } from "./components/Blog"
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="letters" element={<LettersPage />} />
         <Route path="blog" element={<BlogPage />} />
+        <Route path="blog/:blogId" element={<Blog />} />
         <Route path="contact" element={<h1>Contact Us Page</h1>} />
         <Route path="signin" element={<SignIn />} />
       </Route>

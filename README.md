@@ -19,7 +19,6 @@ Letters Page:
 
 Blog Page:
 
-- Add a Modal for when they first enter asking them to sign up
 - Should be a list of blogs with the name, a photo, and then a shortened description.
 - Render them directly from front end first, then switch them into being retrieved from Firebase.
 - Create an admin UI to create future blogs as well and send them into firebase. Will get admin by manually adding 'admin:true' to my user in database.
