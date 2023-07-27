@@ -10,7 +10,6 @@ import { HomePage } from "./pages/homePage"
 import ErrorPage from "./components/ErrorPage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
-import { StrategyPage } from "./pages/StrategyPage"
 import { Login } from "./components/Login"
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
         <Route index element={<HomePage />} />
-        <Route path="strategy" element={<StrategyPage />} />
         <Route path="letters" element={<LettersPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="login" element={<Login />} />

@@ -8,7 +8,6 @@ import {
   ListItem,
 } from "@material-tailwind/react"
 import {
-  GlobeAsiaAustraliaIcon,
   Bars3Icon,
   XMarkIcon,
   FolderIcon,
@@ -21,15 +20,6 @@ import { auth } from "../firebase"
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Link
-        to="/strategy"
-        className="text-blue-gray-900 font-serif font-medium text-md"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <GlobeAsiaAustraliaIcon className="h-[18px] w-[18px]" />
-          Strategy
-        </ListItem>
-      </Link>
       <Link
         to="/letters"
         className="text-blue-gray-900 font-serif font-medium text-md"
