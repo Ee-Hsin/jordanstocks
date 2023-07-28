@@ -22,17 +22,17 @@ export const strategySection = [
 
 export const performanceFigures = [
   {
-    from: "From December 31st, 2022:",
+    from: "December 31st 2022:",
     serayaPerf: "35.70%",
     sp500Perf: "16.38%",
   },
   {
-    from: "Since inception (September 2nd, 2022):",
+    from: "Inception (September 2nd 2022):",
     serayaPerf: "20.93%",
     sp500Perf: "13.41%",
   },
   {
-    from: "Annualized since inception:",
+    from: "Annualized since Inception:",
     serayaPerf: "25.94%",
     sp500Perf: "16.49%",
   },

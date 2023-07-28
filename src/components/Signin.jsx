@@ -1,7 +1,6 @@
 import { useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../firebase"
+import { UserAuth } from "../hooks/AuthContext"
 import { useNavigate } from "react-router-dom"
 
 export const SignIn = () => {
@@ -9,6 +8,7 @@ export const SignIn = () => {
   const pswRef = useRef()
   const [err, setErr] = useState(false)
   const navigate = useNavigate()
+  const { signIn } = UserAuth()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -16,11 +16,7 @@ export const SignIn = () => {
     if (!emailRef.current.value) return
     if (!pswRef.current.value) return
 
-    signInWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      pswRef.current.value
-    )
+    signIn(emailRef.current.value, pswRef.current.value)
       .then((userCredential) => {
         console.log(userCredential)
         emailRef.current.value = ""

@@ -13,6 +13,7 @@ import { SignIn } from "./components/Signin"
 import { NavBar } from "./components/NavBar"
 import { Footer } from "./components/Footer"
 import { Blog } from "./components/Blog"
+import { AuthContextProvider } from "./hooks/AuthContext"
 
 function App() {
   const router = createBrowserRouter(
@@ -30,7 +31,11 @@ function App() {
     )
   )
 
-  return <RouterProvider router={router} />
+  return (
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+  )
 }
 
 const Layout = () => {

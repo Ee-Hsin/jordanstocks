@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { onAuthStateChanged, signOut } from "firebase/auth"
-import { auth } from "../firebase"
+import { UserAuth } from "../hooks/AuthContext"
 import { useMediaPredicate } from "react-media-hook"
 
 const navigation = [
@@ -12,9 +11,11 @@ const navigation = [
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false)
-  const [loggedIn, setLoggedIn] = useState()
+  //   const [loggedIn, setLoggedIn] = useState(false)
 
   const mediumAndAbove = useMediaPredicate("(min-width: 768px)")
+
+  const { user, logOut } = UserAuth()
 
   //   We use this to ensure that every time the window is expanded, the hamburger closes and
   // the styles return to full screen mode.
@@ -24,22 +25,8 @@ export const NavBar = () => {
     }
   }, [mediumAndAbove])
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setLoggedIn(true)
-        // console.log(1)
-      } else {
-        setLoggedIn(false)
-        // console.log(2)
-      }
-    })
-
-    return () => unsubscribe()
-  }, [loggedIn])
-
   const handleSignOut = () => {
-    signOut(auth)
+    logOut()
       .then(() => {
         console.log("Logged out")
       })
@@ -115,7 +102,7 @@ export const NavBar = () => {
             <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
             <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
               <li>
-                {loggedIn ? (
+                {user ? (
                   <button
                     onClick={handleSignOut}
                     className="px-3 py-1.5 text-sm text-white 

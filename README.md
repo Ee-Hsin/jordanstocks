@@ -38,6 +38,11 @@ Additional:
 
 - Ability to subscribe to blog from the Footer
 
+<b>NavBar</b>
+
+- Navbar should close everytime the page changes
+- SignOut is also too small in responsive mode
+
 <b>Admin</b>
 
 - Create an admin UI to create future blogs as well as Letters and send them into firebase. Will get admin by manually adding 'admin:true' to my user in database.
