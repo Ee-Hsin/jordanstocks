@@ -19,10 +19,10 @@ Additional:
 
 <b>Blog Page:</b>
 
-- Render them directly from front end first, then switch them into being retrieved from Firebase.
-- Use React Query for firebase fetching.
+- For individual Blog Page, can get existing data from queryClient with queryClient.getQueryData('blogPosts') and then filter it out from there.
+  (https://stackoverflow.com/questions/68336399/access-data-already-fetched-with-react-query-in-other-component)
+- Ability to subscribe to email list from Blog Page
 - Add Pagnation once received more blogs
-- Ability to subscribe from Blog Page
 
 <b>Contact Us Page</b>
 

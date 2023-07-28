@@ -1,35 +1,11 @@
 import { Link } from "react-router-dom"
-// Ideally I want these ot to have to be imported, and instead,
-//I want them in the firebase.js file and exported, only need to take in param of "blogPosts"
-import { useQuery } from "@tanstack/react-query"
-import { getCollection } from "../hooks/firestore"
-// import { useEffect } from "react"
+import { useBlogPosts } from "../hooks/query"
 
 export const BlogPage = () => {
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["blogPosts"],
-    queryFn: () =>
-      getCollection("blogPosts").then((querySnapshot) => querySnapshot),
-  })
+  const { isLoading, isError, data, error } = useBlogPosts()
 
   if (isLoading) return <h1>Loading...</h1>
   if (isError) return <h1>Error: {JSON.stringify(error)}</h1>
-
-  // If we are not in loading or error state, it means we are successful and our Data will
-  //automatically be populated for us
-  // return (
-  //   <div>
-  //     {/* need to add .docs because data is currently a query Snapshot which can only
-  //     be forEached. We need to switch to .docs so we can use map. */}
-  //     {data.docs.map((post) => {
-  //       return (
-  //         <div key={post.id}>
-  //           <h1>{JSON.stringify(post.data())}</h1>
-  //         </div>
-  //       )
-  //     })}
-  //   </div>
-  // )
 
   return (
     <section className="pb-32 pt-8">
