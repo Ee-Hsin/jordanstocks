@@ -2,8 +2,7 @@
 
 TODO tomorrow:
 
-1. Blogs should be rendered from firebase database (Use React Query for the fetching)
-2. Add a Contact Us page
+1. Add a Contact Us page
 
 Additional:
 

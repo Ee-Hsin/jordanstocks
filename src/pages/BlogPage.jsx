@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom"
+import { BlogPreviewCard } from "../components/BlogPreviewCard"
+import { Loader } from "../components/Loader"
 import { useBlogPosts } from "../hooks/query"
 
 export const BlogPage = () => {
-  const { isLoading, isError, data, error } = useBlogPosts()
-
-  if (isLoading) return <h1>Loading...</h1>
-  if (isError) return <h1>Error: {JSON.stringify(error)}</h1>
+  const { isLoading, isError, isSuccess, data, error } = useBlogPosts()
 
   return (
     <section className="pb-32 pt-8">
@@ -48,31 +46,21 @@ export const BlogPage = () => {
           </form>
         </div>
         <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
-          {data.docs.map((post) => (
-            <li className="w-full mx-auto group sm:max-w-sm" key={post.id}>
-              <Link to={post.id}>
-                <img
-                  src={post.data().img}
-                  loading="lazy"
-                  alt={post.data().title}
-                  className="rounded-lg w-[320px] h-[200px]"
-                />
-                <div className="mt-3 space-y-2">
-                  <span className="block text-indigo-600 text-sm">
-                    {post.data().date}
-                  </span>
-                  <h3 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
-                    {post.data().title}
-                  </h3>
-                  <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
-                    {post.data().description.slice(0, 100) + "..."}
-                  </p>
-                </div>
-              </Link>
-            </li>
-          ))}
+          {isError && <h1>Error: {JSON.stringify(error)}</h1>}
+          {isSuccess &&
+            data.docs.map((post) => (
+              <BlogPreviewCard
+                key={post.id}
+                id={post.id}
+                img={post.data().img}
+                title={post.data().title}
+                date={post.data().date}
+                description={post.data().description}
+              />
+            ))}
         </ul>
       </div>
+      {isLoading && <Loader />}
     </section>
   )
 }
