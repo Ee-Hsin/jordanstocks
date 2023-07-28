@@ -1,5 +1,5 @@
 import { StrategyCard } from "./StrategyCard"
-import { strategySection } from "../content"
+import { STRATEGYSECTION } from "../content"
 
 export const Strategy = () => {
   return (
@@ -19,7 +19,7 @@ export const Strategy = () => {
         </div>
         <div className="mt-2">
           <ul className="grid gap-x-12 divide-y [&>.feature-1]:pl-0 sm:grid-cols-2 sm:gap-y-8 sm:divide-y-0 lg:divide-x lg:grid-cols-3 lg:gap-x-0">
-            {strategySection.map((strat, idx) => (
+            {STRATEGYSECTION.map((strat, idx) => (
               <StrategyCard {...strat} idx key={idx} />
             ))}
           </ul>
@@ -40,7 +40,7 @@ export const Strategy = () => {
 //         </h1>
 //       </div>
 //       <div className="flex flex-col lg:justify-between my-8 mx-3 lg:my-12 lg:mx-4">
-//         {strategySection.map((strat, index) => {
+//         {STRATEGYSECTION.map((strat, index) => {
 //           return <StrategyCard key={index} {...strat} />
 //         })}
 //       </div>

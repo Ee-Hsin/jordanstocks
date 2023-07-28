@@ -1,23 +1,35 @@
-import { blogPosts } from "../content"
 import { Link } from "react-router-dom"
 // Ideally I want these ot to have to be imported, and instead,
 //I want them in the firebase.js file and exported, only need to take in param of "blogPosts"
-import { db } from "../firebase"
-import { collection, getDocs } from "firebase/firestore"
-import { useEffect } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { getCollection } from "../hooks/firestore"
+// import { useEffect } from "react"
 
 export const BlogPage = () => {
-  useEffect(() => {
-    const a = async () => {
-      const querySnapshot = await getDocs(collection(db, "blogPosts"))
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data())
-      })
-    }
-
-    a()
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["blogPosts"],
+    queryFn: () =>
+      getCollection("blogPosts").then((querySnapshot) => querySnapshot),
   })
+
+  if (isLoading) return <h1>Loading...</h1>
+  if (isError) return <h1>Error: {JSON.stringify(error)}</h1>
+
+  // If we are not in loading or error state, it means we are successful and our Data will
+  //automatically be populated for us
+  // return (
+  //   <div>
+  //     {/* need to add .docs because data is currently a query Snapshot which can only
+  //     be forEached. We need to switch to .docs so we can use map. */}
+  //     {data.docs.map((post) => {
+  //       return (
+  //         <div key={post.id}>
+  //           <h1>{JSON.stringify(post.data())}</h1>
+  //         </div>
+  //       )
+  //     })}
+  //   </div>
+  // )
 
   return (
     <section className="pb-32 pt-8">
@@ -60,24 +72,24 @@ export const BlogPage = () => {
           </form>
         </div>
         <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((items) => (
-            <li className="w-full mx-auto group sm:max-w-sm" key={items.id}>
-              <Link to={items.id}>
+          {data.docs.map((post) => (
+            <li className="w-full mx-auto group sm:max-w-sm" key={post.id}>
+              <Link to={post.id}>
                 <img
-                  src={items.img}
+                  src={post.data().img}
                   loading="lazy"
-                  alt={items.title}
-                  className="w-full rounded-lg"
+                  alt={post.data().title}
+                  className="rounded-lg w-[320px] h-[200px]"
                 />
                 <div className="mt-3 space-y-2">
                   <span className="block text-indigo-600 text-sm">
-                    {items.date}
+                    {post.data().date}
                   </span>
                   <h3 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
-                    {items.title}
+                    {post.data().title}
                   </h3>
                   <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
-                    {items.desc}
+                    {post.data().description.slice(0, 100) + "..."}
                   </p>
                 </div>
               </Link>

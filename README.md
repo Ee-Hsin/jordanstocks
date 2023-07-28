@@ -2,9 +2,8 @@
 
 TODO tomorrow:
 
-1. Blogs should be rendered from firebase database
-2. Custom user Hook
-3. Add a Contact Us page
+1. Blogs should be rendered from firebase database (Use React Query for the fetching)
+2. Add a Contact Us page
 
 Additional:
 
@@ -21,7 +20,7 @@ Additional:
 <b>Blog Page:</b>
 
 - Render them directly from front end first, then switch them into being retrieved from Firebase.
-- Since need to fetch in BlogPage and then again in individual blog, should use the React Router loader and useLoaderData and nest the dynamic route to fetch only at the blog page and use that info for the individual blog page. OR use React Query and still need to technically query twice, BUT it caches the stuff for me. I think I might go with the React Query Route.
+- Use React Query for firebase fetching.
 - Add Pagnation once received more blogs
 - Ability to subscribe from Blog Page
 

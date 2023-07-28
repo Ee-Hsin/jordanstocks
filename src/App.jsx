@@ -14,8 +14,11 @@ import { NavBar } from "./components/NavBar"
 import { Footer } from "./components/Footer"
 import { Blog } from "./components/Blog"
 import { AuthContextProvider } from "./hooks/AuthContext"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 function App() {
+  const queryClient = new QueryClient()
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
@@ -32,9 +35,11 @@ function App() {
   )
 
   return (
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
+    </QueryClientProvider>
   )
 }
 

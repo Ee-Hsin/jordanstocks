@@ -1,4 +1,4 @@
-import { performanceFigures } from "../content"
+import { PERFORMANCEFIGURES } from "../content"
 
 export const PerformanceTable = () => {
   return (
@@ -23,7 +23,7 @@ export const PerformanceTable = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {performanceFigures.map((item, idx) => (
+            {PERFORMANCEFIGURES.map((item, idx) => (
               <tr key={idx} className="text-center">
                 <td className="px-6 pr-0 py-4 whitespace-nowrap text-left">
                   {item.from}
