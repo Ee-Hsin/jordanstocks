@@ -1,7 +1,24 @@
 import { blogPosts } from "../content"
 import { Link } from "react-router-dom"
+// Ideally I want these ot to have to be imported, and instead,
+//I want them in the firebase.js file and exported, only need to take in param of "blogPosts"
+import { db } from "../firebase"
+import { collection, getDocs } from "firebase/firestore"
+import { useEffect } from "react"
 
 export const BlogPage = () => {
+  useEffect(() => {
+    const a = async () => {
+      const querySnapshot = await getDocs(collection(db, "blogPosts"))
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data())
+      })
+    }
+
+    a()
+  })
+
   return (
     <section className="pb-32 pt-8">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
