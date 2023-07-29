@@ -1,5 +1,5 @@
 import { StrategyCard } from "./StrategyCard"
-import { STRATEGYSECTION } from "../content"
+import { STRATEGYSECTION } from "../../../content"
 
 export const Strategy = () => {
   return (

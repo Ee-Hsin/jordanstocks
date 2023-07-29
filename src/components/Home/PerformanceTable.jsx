@@ -1,4 +1,4 @@
-import { PERFORMANCEFIGURES } from "../content"
+import { PERFORMANCEFIGURES } from "../../content"
 
 export const PerformanceTable = () => {
   return (

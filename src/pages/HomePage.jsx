@@ -1,6 +1,6 @@
-import { Hero } from "../components/Hero.jsx"
-import { PerformanceTable } from "../components/PerformanceTable.jsx"
-import { Strategy } from "../components/Strategy.jsx"
+import { Hero } from "../components/Home/Hero.jsx"
+import { PerformanceTable } from "../components/Home/PerformanceTable.jsx"
+import { Strategy } from "../components/Home/Strategy/Strategy.jsx"
 
 export const HomePage = () => {
   return (

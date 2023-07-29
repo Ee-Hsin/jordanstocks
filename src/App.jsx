@@ -6,15 +6,16 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import { HomePage } from "./pages/homePage"
-import ErrorPage from "./components/ErrorPage"
+import ErrorPage from "./components/Layout/ErrorPage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
-import { SignIn } from "./components/Signin"
-import { NavBar } from "./components/NavBar"
-import { Footer } from "./components/Footer"
-import { Blog } from "./components/Blog"
+import { SignIn } from "./components/Authentication/Signin"
+import { NavBar } from "./components/Layout/NavBar"
+import { Footer } from "./components/Layout/Footer"
+import { SingleBlog } from "./components/Blog/Blog"
 import { AuthContextProvider } from "./hooks/AuthContext"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ContactPage } from "./pages/ContactPage"
 
 function App() {
   const queryClient = new QueryClient()
@@ -26,9 +27,9 @@ function App() {
         <Route path="letters" element={<LettersPage />} />
         <Route path="blog">
           <Route index element={<BlogPage />} />
-          <Route path=":blogId" element={<Blog />} />
+          <Route path=":blogId" element={<SingleBlog />} />
         </Route>
-        <Route path="contact" element={<h1>Contact Us Page</h1>} />
+        <Route path="contact" element={<ContactPage />} />
         <Route path="signin" element={<SignIn />} />
       </Route>
     )

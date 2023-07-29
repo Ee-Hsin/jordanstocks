@@ -1,5 +1,5 @@
 //import { useState } from "react";
-import background from "../img/MalaysiaRainforest.jpg"
+import background from "../../img/MalaysiaRainforest.jpg"
 
 export const Hero = () => {
   return (

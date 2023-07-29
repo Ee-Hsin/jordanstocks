@@ -1,5 +1,5 @@
-import { BlogPreviewCard } from "../components/BlogPreviewCard"
-import { Loader } from "../components/Loader"
+import { BlogPreviewCard } from "../components/Blog/BlogPreviewCard"
+import { Loader } from "../components/UI/Loader"
 import { useBlogPosts } from "../hooks/query"
 
 export const BlogPage = () => {

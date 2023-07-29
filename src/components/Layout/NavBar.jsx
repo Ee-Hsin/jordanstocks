@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { UserAuth } from "../hooks/AuthContext"
+import { UserAuth } from "../../hooks/AuthContext"
 import { useMediaPredicate } from "react-media-hook"
 
 const navigation = [
