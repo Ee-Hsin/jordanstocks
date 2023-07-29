@@ -2,7 +2,8 @@
 
 TODO tomorrow:
 
-1. Add a Contact Us page
+1. Make the individual Blog Page presentable
+2. Add subscribing to newsletter from footer (just adds an email to a document (called newsletter subscribers) to a collection called newsletter)
 
 Additional:
 
@@ -19,15 +20,13 @@ Additional:
 
 <b>Blog Page:</b>
 
-- For individual Blog Page, can get existing data from queryClient with queryClient.getQueryData('blogPosts') and then filter it out from there.
-  (https://stackoverflow.com/questions/68336399/access-data-already-fetched-with-react-query-in-other-component)
 - Ability to subscribe to email list from Blog Page
 - Add Pagnation once received more blogs
 
 <b>Contact Us Page</b>
 
-- Simple Contact Us Page with form that emails to me (eehsinkok777@gmail.com)
 - Add a CAPTCHA to prevent form from being spammed by bots
+- Add security to prevent inputs from being injected with HTML
 
 <b>Holdings Page:</b>
 

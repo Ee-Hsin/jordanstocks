@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { UserAuth } from "../../hooks/AuthContext"
 import { useMediaPredicate } from "react-media-hook"
 
@@ -11,10 +11,8 @@ const navigation = [
 
 export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false)
-  //   const [loggedIn, setLoggedIn] = useState(false)
-
   const mediumAndAbove = useMediaPredicate("(min-width: 768px)")
-
+  const location = useLocation()
   const { user, logOut } = UserAuth()
 
   //   We use this to ensure that every time the window is expanded, the hamburger closes and
@@ -24,6 +22,11 @@ export const NavBar = () => {
       setOpenNav(false)
     }
   }, [mediumAndAbove])
+
+  //Everytime location changes (meaning a link is clicked), navBar is set to close.
+  useEffect(() => {
+    setOpenNav(false)
+  }, [location])
 
   const handleSignOut = () => {
     logOut()
