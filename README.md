@@ -2,8 +2,7 @@
 
 TODO tomorrow:
 
-1. Make the individual Blog Page presentable
-2. Add subscribing to newsletter from footer (just adds an email to a document (called newsletter subscribers) to a collection called newsletter)
+1. Add subscribing to newsletter from footer (just adds an email to a document (called newsletter subscribers) to a collection called newsletter)
 
 Additional:
 
@@ -12,6 +11,7 @@ Additional:
 3. Lazy Load routes
 4. Delete all the console.log's when everything is done
 5. Once released on site, register with Google and add a CAPTCHA to prevent bots on Contact Form.
+6. Make the fonts and the images bigger
 
 <b>Letters Page:</b>
 
@@ -25,6 +25,7 @@ Additional:
 
 <b>Contact Us Page</b>
 
+- Add an input field with standard topics (Interested in investing, want to learn more about the fund, other, etc.)
 - Add a CAPTCHA to prevent form from being spammed by bots
 - Add security to prevent inputs from being injected with HTML
 

@@ -6,7 +6,7 @@ export const BlogPage = () => {
   const { isLoading, isError, isSuccess, data, error } = useBlogPosts()
 
   return (
-    <section className="pb-32 pt-8">
+    <section className="pb-20 pt-8">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto">
           <h1 className="text-gray-800 text-3xl font-extrabold sm:text-4xl">
