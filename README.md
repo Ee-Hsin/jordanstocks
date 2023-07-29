@@ -10,6 +10,7 @@ Additional:
 2. Lazy load images and with blurry placeholder first while main is loading
 3. Lazy Load routes
 4. Delete all the console.log's when everything is done
+5. Once released on site, register with Google and add a CAPTCHA to prevent bots on Contact Form.
 
 <b>Letters Page:</b>
 
@@ -26,6 +27,7 @@ Additional:
 <b>Contact Us Page</b>
 
 - Simple Contact Us Page with form that emails to me (eehsinkok777@gmail.com)
+- Add a CAPTCHA to prevent form from being spammed by bots
 
 <b>Holdings Page:</b>
 
@@ -45,3 +47,5 @@ Additional:
 
 - Create an admin UI to create future blogs as well as Letters and send them into firebase. Will get admin by manually adding 'admin:true' to my user in database.
 - Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
+- Create identical userDoc when user signs up and adds it to the database, method is here
+  https://stackoverflow.com/questions/72437027/create-identical-user-in-firestore-based-on-firebase-authentication
