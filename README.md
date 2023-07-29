@@ -2,7 +2,11 @@
 
 TODO tomorrow:
 
-1. Add subscribing to newsletter from footer (just adds an email to a document (called newsletter subscribers) to a collection called newsletter)
+1. Add subscribing to newsletter from footer (just adds an email to a document (called by the email but with dateSubscribed and email, to a collection called emailList))
+2. Timestamps! https://stackoverflow.com/a/70451350/15426643
+3. Change userAuth to useAuth in AuthContext.jsx since custom hooks (aka functions) using hooks
+   must start with 'use'. userAuth uses useContext so it must be called useAuth or useUserAuth.
+   (useAuth is also what we called it in Speer)
 
 Additional:
 
@@ -21,13 +25,15 @@ Additional:
 <b>Blog Page:</b>
 
 - Ability to subscribe to email list from Blog Page
+- Add security to prevent inputs from being injected with HTML
+- Add CAPTCHA to prevent this input from being spammed by robots
 - Add Pagnation once received more blogs
 
 <b>Contact Us Page</b>
 
 - Add an input field with standard topics (Interested in investing, want to learn more about the fund, other, etc.)
-- Add a CAPTCHA to prevent form from being spammed by bots
 - Add security to prevent inputs from being injected with HTML
+- Add a CAPTCHA to prevent form from being spammed by bots
 
 <b>Holdings Page:</b>
 
