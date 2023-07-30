@@ -1,5 +1,9 @@
 import { PORTFOLIO } from "../../content"
 
+const addCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 export const PortfolioTable = () => {
   let PORTFOLIO_SUM = 0
   PORTFOLIO.forEach((stock) => {
@@ -46,10 +50,16 @@ export const PortfolioTable = () => {
                 <td className="px-6 py-4 whitespace-nowrap">{item.units}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   ${item.price.toFixed(2)}
+                  {/* Should be 2 digits already due to form validation 
+                  when price is added to database, but this just ensures it */}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.currency}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  ${item.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  {item.currency.toUpperCase()}
+                  {/* Should be uppercase already due to form validation when
+                  currency is added to database, but this just ensures it*/}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  ${addCommas(item.value)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {item.percent.toFixed(2)}%
@@ -57,6 +67,20 @@ export const PortfolioTable = () => {
               </tr>
             ))}
           </tbody>
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr className="text-center">
+              <td className="px-6 py-4 whitespace-nowrap text-left">
+                Assets Under Management
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">-</td>
+              <td className="px-6 py-4 whitespace-nowrap">-</td>
+              <td className="px-6 py-4 whitespace-nowrap">-</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                ${addCommas(PORTFOLIO_SUM)}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">100%</td>
+            </tr>
+          </thead>
         </table>
       </div>
     </div>

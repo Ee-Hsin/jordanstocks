@@ -75,14 +75,17 @@ https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
 1. Sign In form (only Email and Passsword inputs)
 
 - Captcha to prevent spam
+- Could use React Hook Form to feedback missing email or password, BUT unncessary as we alr put required on the input tags AND we dont need to feedback things like minimum or maximum characters since this is only the sign in page.
 
 2. Subscribe Blog forms (only Email)
 
 - Captcha to prevent spam
+- React Hook Form unnecessary as only one state
 
 3. Contact Us Form (First Name, Last Name, email, message)
 
 - Captcha to prevent spam
+- Used React Hook Form
 
 4. sendPortfolio form (stock name, ticker, units, price, currency, conversion)
 

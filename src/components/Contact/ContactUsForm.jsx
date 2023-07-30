@@ -36,7 +36,7 @@ export const ContactUsForm = () => {
   }
 
   return (
-    <main className="py-14">
+    <main className="py-7">
       <SuccessModal
         openSuccessModal={openSuccessModal}
         setOpenSuccessModal={setOpenSuccessModal}
@@ -65,7 +65,10 @@ export const ContactUsForm = () => {
               <div>
                 <label className="font-medium">First name</label>
                 <input
-                  {...register("firstName", { required: true, maxLength: 50 })}
+                  {...register("firstName", {
+                    required: "First name is required",
+                    maxLength: 50,
+                  })}
                   type="text"
                   name="firstName"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
