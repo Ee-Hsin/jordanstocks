@@ -2,8 +2,9 @@
 
 TODO tomorrow:
 
-1. Add UI for Holdings Page
-   Company, Ticker, Units, Price, Currency, Liquidation Value (USD)
+1. Use form validation to ensure Update Portfolio Holdings submits properly (can apply learnings to the Contact Us Form)
+2. Make sure useMutation submits correctly
+3. create another fetch React query for Holdings page to fetch from firebase
 
 Additional:
 
@@ -37,8 +38,14 @@ Additional:
 - Add security to prevent inputs from being injected with HTML
 - Add CAPTCHA to prevent spam for the Blog subscription
 
+<b>Sign in</b>
+
+- Add forgot password functionality
+
 <b>Portfolio Page:</b>
 
+- Make UpdatePortfolio, make it work
+- Make it only available to user's with Admin permission
 - Similar UI to BlogPage with each section (for every 6 months) holding a link to a table of stocks.
 
 <b>NavBar</b>
@@ -53,6 +60,30 @@ Additional:
   b. Letters
   c. Holdings list for every period
 
-- Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
 - Create identical userDoc when user signs up and adds it to the database, method is here
   https://stackoverflow.com/questions/72437027/create-identical-user-in-firestore-based-on-firebase-authentication
+
+<b>Forms</b>
+
+1. Sign In form (only Email and Passsword inputs)
+
+- Prevent SQL or HTML injections
+- Captcha to prevent spam
+
+2. Subscribe Blog forms (only Email)
+
+- Prevent SQL or HTML injections
+- Captcha to prevent spam
+
+3. Contact Us Form (First Name, Last Name, email, message)
+
+- Ensure all fields are filled and valid before sending POST request
+- Prevent SQL or HTML injections
+- Captcha to prevent spam
+
+4. sendPortfolio form (stock name, ticker, units, price, currency, conversion)
+
+- Ensure all fields are filled and valid
+- Set default USD conversion rate to 1, and make calculations for value (in USD) before sending POST request
+- Prevent SQL or HTML injections
+- Captcha to prevent spam

@@ -2,19 +2,25 @@ import emailjs from "@emailjs/browser"
 import { useState } from "react"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
+import { useForm } from "react-hook-form"
 
 export const ContactUsForm = () => {
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
   const [openFailureModal, setOpenFailureModal] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault()
-
+  const onSubmit = (data, e) => {
+    console.log(e)
+    console.log(data)
     emailjs
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
-        e.target,
+        e.target, //Have to use e.target as opposed to data since emailJs sendForm method requires a HTMLFormElement or query selector. In this case, e.targeti a HTMLFormElement, data is neither.
         import.meta.env.VITE_API_PUBLIC_KEY
       )
       .then((result) => {
@@ -54,43 +60,73 @@ export const ContactUsForm = () => {
           </p>
         </div>
         <div className="mt-12 max-w-lg mx-auto">
-          <form onSubmit={handleSubmitForm} className="space-y-5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
               <div>
                 <label className="font-medium">First name</label>
                 <input
+                  {...register("firstName", { required: true, maxLength: 50 })}
                   type="text"
                   name="firstName"
-                  required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                {errors.firstName?.type === "required" && (
+                  <p role="alert" className="text-red-500">
+                    First name is required
+                  </p>
+                )}
+                {errors.firstName?.type === "maxLength" && (
+                  <p role="alert" className="text-red-500">
+                    First Name should not exceed 50 characters
+                  </p>
+                )}
               </div>
               <div>
                 <label className="font-medium">Last name</label>
                 <input
+                  {...register("lastName", { maxLength: 50 })}
                   type="text"
                   name="lastName"
-                  required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                {errors.lastName?.type === "maxLength" && (
+                  <p role="alert" className="text-red-500">
+                    Last Name should not exceed 50 characters
+                  </p>
+                )}
               </div>
             </div>
             <div>
               <label className="font-medium">Email</label>
               <input
+                {...register("email", { required: true, maxLength: 75 })}
                 type="email"
-                name="senderEmail"
-                required
+                name="email"
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
+              {errors.email?.type === "required" && (
+                <p role="alert" className="text-red-500">
+                  Email is required
+                </p>
+              )}
+              {errors.email?.type === "maxLength" && (
+                <p role="alert" className="text-red-500">
+                  Email should not exceed 75 characters
+                </p>
+              )}
             </div>
             <div>
               <label className="font-medium">Message</label>
               <textarea
-                required
+                {...register("message", { required: true, maxLength: 2000 })}
                 name="message"
                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               ></textarea>
+              {errors.message?.type === "required" && (
+                <p role="alert" className="text-red-500">
+                  A brief message is required
+                </p>
+              )}
             </div>
             <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
               Submit
