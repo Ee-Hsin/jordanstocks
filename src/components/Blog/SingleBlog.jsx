@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom"
 import { Loader } from "../UI/Loader"
 import { useEffect, useState } from "react"
-import { useFetchBlogPosts } from "../../hooks/query"
+import { useGetBlogPosts } from "../../hooks/query"
 
 export const SingleBlog = () => {
   const { blogId } = useParams()
-  const { isLoading, isError, isSuccess, data, error } = useFetchBlogPosts()
+  const { isLoading, isError, isSuccess, data, error } = useGetBlogPosts()
   const [contents, setContents] = useState({})
 
   useEffect(() => {

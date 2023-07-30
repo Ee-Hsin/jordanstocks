@@ -23,6 +23,7 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (!email) return
     mutation.mutate(email)
     setEmail("")
   }
@@ -80,6 +81,7 @@ const FooterSubscribe = ({ handleSubmit, email, setEmail }) => {
           className="w-full p-2.5 outline-none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <button className="p-2.5 rounded-md text-white bg-indigo-600 outline-none shadow-md focus:shadow-none sm:px-5">
           Subscribe
@@ -116,6 +118,7 @@ const BlogPageSubscribe = ({ handleSubmit, email, setEmail }) => {
           className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg sm:max-w-xs"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </div>
       <button className="block w-full mt-3 py-3 px-4 font-medium text-sm text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow sm:mt-0 sm:w-auto">

@@ -65,20 +65,23 @@ Additional:
 
 <b>Forms</b>
 
+Input into Firebase Authentication is handled by Firebase,
+but input into Firestore (such as through subscribe Blog), should be sanitized.
+
+Output is always sanitized:
+"JSX expressions {} automatically take care of encoding HTML before rendering, which means even if u don't sanitise your input your webpage is XSS safe."
+https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
+
 1. Sign In form (only Email and Passsword inputs)
 
-- Prevent SQL or HTML injections
 - Captcha to prevent spam
 
 2. Subscribe Blog forms (only Email)
 
-- Prevent SQL or HTML injections
 - Captcha to prevent spam
 
 3. Contact Us Form (First Name, Last Name, email, message)
 
-- Ensure all fields are filled and valid before sending POST request
-- Prevent SQL or HTML injections
 - Captcha to prevent spam
 
 4. sendPortfolio form (stock name, ticker, units, price, currency, conversion)

@@ -5,7 +5,7 @@ import {
   postDoc,
 } from "../hooks/firestore"
 
-const useFetchBlogPosts = () => {
+const useGetBlogPosts = () => {
   return useQuery({
     queryKey: ["blogPosts"],
     queryFn: () => getCollection("blogPosts"),
@@ -29,4 +29,4 @@ const usePostPortfolio = () => {
   })
 }
 
-export { useFetchBlogPosts, usePostEmailList, usePostPortfolio }
+export { useGetBlogPosts, usePostEmailList, usePostPortfolio }

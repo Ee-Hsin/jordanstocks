@@ -1,10 +1,10 @@
 import { BlogPreviewCard } from "../components/Blog/BlogPreviewCard"
 import { SubscribeBlogComponent } from "../components/Blog/SubscribeBlogComponent"
 import { Loader } from "../components/UI/Loader"
-import { useFetchBlogPosts } from "../hooks/query"
+import { useGetBlogPosts } from "../hooks/query"
 
 export const BlogPage = () => {
-  const { isLoading, isError, isSuccess, data, error } = useFetchBlogPosts()
+  const { isLoading, isError, isSuccess, data, error } = useGetBlogPosts()
 
   return (
     <section className="pb-20 pt-8">
