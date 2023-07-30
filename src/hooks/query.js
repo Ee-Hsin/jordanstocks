@@ -12,7 +12,7 @@ const useFetchBlogPosts = () => {
   })
 }
 
-const useSendEmailList = () => {
+const usePostEmailList = () => {
   return useMutation({
     mutationFn: (email) =>
       postDoc(
@@ -23,4 +23,10 @@ const useSendEmailList = () => {
   })
 }
 
-export { useFetchBlogPosts, useSendEmailList }
+const usePostPortfolio = () => {
+  return useMutation({
+    mutationFn: (stock) => postDoc("portfolio", stock, stock.ticker),
+  })
+}
+
+export { useFetchBlogPosts, usePostEmailList, usePostPortfolio }

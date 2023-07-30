@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useSendEmailList } from "../../hooks/query"
+import { usePostEmailList } from "../../hooks/query"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
@@ -8,7 +8,7 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   const [email, setEmail] = useState("")
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
   const [openFailureModal, setOpenFailureModal] = useState(false)
-  const mutation = useSendEmailList()
+  const mutation = usePostEmailList()
 
   useEffect(() => {
     if (mutation.status === "error") {
