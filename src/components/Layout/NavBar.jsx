@@ -23,9 +23,11 @@ export const NavBar = () => {
     }
   }, [mediumAndAbove])
 
-  //Everytime location changes (meaning a link is clicked), navBar is set to close.
+  //Everytime location changes (meaning a link is clicked), navBar is set to close, and we scroll
+  //back up to the top of the page
   useEffect(() => {
     setOpenNav(false)
+    scrollToTop()
   }, [location])
 
   const handleSignOut = () => {
@@ -36,6 +38,10 @@ export const NavBar = () => {
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0 })
   }
 
   return (
@@ -108,9 +114,9 @@ export const NavBar = () => {
                 {user ? (
                   <button
                     onClick={handleSignOut}
-                    className="px-3 py-1.5 text-sm text-white 
-                    duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 
-                    active:shadow-lg"
+                    className="block py-3 px-4 font-medium text-center 
+                    text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700
+                     active:shadow-none rounded-lg shadow md:inline w-full"
                   >
                     Sign Out
                   </button>

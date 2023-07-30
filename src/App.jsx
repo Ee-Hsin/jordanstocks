@@ -13,7 +13,6 @@ import { SignIn } from "./components/Authentication/Signin"
 import { NavBar } from "./components/Layout/NavBar"
 import { Footer } from "./components/Layout/Footer"
 import { SingleBlog } from "./components/Blog/SingleBlog"
-import { AuthContextProvider } from "./hooks/AuthContext"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ContactPage } from "./pages/ContactPage"
 
@@ -37,9 +36,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <RouterProvider router={router} />
-      </AuthContextProvider>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   )
 }

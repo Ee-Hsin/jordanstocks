@@ -2,32 +2,50 @@ import { useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { Loader } from "../UI/Loader"
 
 export const SignIn = () => {
-  const emailRef = useRef()
-  const pswRef = useRef()
+  const emailRef = useRef("")
+  const pswRef = useRef("")
   const [err, setErr] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const { signIn } = useAuth()
+  const { signIn, user } = useAuth()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     if (!emailRef.current.value) return
     if (!pswRef.current.value) return
+    // Another layer of protection against user signing in when alr signed in
+    if (user) return
 
+    setLoading(true)
     signIn(emailRef.current.value, pswRef.current.value)
       .then((userCredential) => {
         console.log(userCredential)
-        emailRef.current.value = ""
-        pswRef.current.value = ""
         setErr(false)
+        setLoading(false)
         navigate("/letters")
       })
       .catch((err) => {
         console.log(err)
         setErr(true)
+        setLoading(false)
       })
+  }
+
+  // Protects form for when User is alr signed in
+  if (user) {
+    return (
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            You are already Logged in!
+          </h2>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -42,72 +60,75 @@ export const SignIn = () => {
           Partner Sign In
         </h2>
       </div>
-
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                ref={emailRef}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
+        {loading ? (
+          <Loader />
+        ) : (
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
               <label
-                htmlFor="password"
+                htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Password
+                Email address
               </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  ref={emailRef}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                ref={pswRef}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  ref={pswRef}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
-          </div>
-          {err && (
-            <p className="text-red-400">
-              Your username or password is incorrect
-            </p>
-          )}
-          <div className="text-sm">
-            <a
-              href="#"
-              className="font-semibold text-indigo-600 hover:text-indigo-500"
-            >
-              Forgot password?
-            </a>
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
+            {err && (
+              <p className="text-red-400">
+                Your username or password is incorrect
+              </p>
+            )}
+            <div className="text-sm">
+              <a
+                href="#"
+                className="font-semibold text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot password?
+              </a>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign In
+              </button>
+            </div>
+          </form>
+        )}
 
         <p className="mt-10 text-center text-sm text-gray-800">
           Not a Partner?{" "}

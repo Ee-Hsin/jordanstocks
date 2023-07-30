@@ -2,10 +2,12 @@
 
 TODO tomorrow:
 
-1. Timestamps! Confirm that our current functions work, https://stackoverflow.com/a/70451350/15426643
-2. Change userAuth to useAuth in AuthContext.jsx since custom hooks (aka functions) using hooks
-   must start with 'use'. userAuth uses useContext so it must be called useAuth or useUserAuth.
-   (useAuth is also what we called it in Speer)
+1. Sort out Navbar UI changes
+
+- SignOut is also too small in responsive mode
+- Scroll up everytime link is changed
+
+2. Add protected Holdings page and link
 
 Additional:
 
@@ -51,7 +53,11 @@ Additional:
 
 <b>Admin and Hooks</b>
 
-- Create an admin UI to create future blogs as well as Letters and send them into firebase. Will get admin by manually adding 'admin:true' to my user in database.
+- Create an admin UI (Will get admin by manually adding 'admin:true' to my user in database, can also set firebase rules to only allow writing to those collections from logged in users) to create:
+  a. Future blogs
+  b. Letters
+  c. Holdings list for every period
+
 - Custom user hook to check if user is signed in on partnership letter page and that will pick they can access the holdings PDF or not.
 - Create identical userDoc when user signs up and adds it to the database, method is here
   https://stackoverflow.com/questions/72437027/create-identical-user-in-firestore-based-on-firebase-authentication
