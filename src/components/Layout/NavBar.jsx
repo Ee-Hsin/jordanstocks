@@ -108,6 +108,13 @@ export const NavBar = () => {
                 </li>
               )
             })}
+            {user && (
+              <li className="text-gray-700 hover:text-indigo-600">
+                <Link to={"/holdings"} className="block">
+                  {"Holdings"}
+                </Link>
+              </li>
+            )}
             <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
             <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
               <li>

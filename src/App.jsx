@@ -15,6 +15,9 @@ import { Footer } from "./components/Layout/Footer"
 import { SingleBlog } from "./components/Blog/SingleBlog"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ContactPage } from "./pages/ContactPage"
+import { useAuth } from "./hooks/AuthContext"
+import { HoldingsPage } from "./pages/HoldingsPage"
+import { FailureModal } from "./components/UI/FailureModal"
 
 function App() {
   const queryClient = new QueryClient()
@@ -29,6 +32,14 @@ function App() {
           <Route path=":blogId" element={<SingleBlog />} />
         </Route>
         <Route path="contact" element={<ContactPage />} />
+        <Route
+          path="holdings"
+          element={
+            <ProtectedAuthRoute>
+              <HoldingsPage />
+            </ProtectedAuthRoute>
+          }
+        />
         <Route path="signin" element={<SignIn />} />
       </Route>
     )
@@ -51,6 +62,21 @@ const Layout = () => {
       {/* Can put a footer here */}
     </>
   )
+}
+
+const ProtectedAuthRoute = ({ children }) => {
+  const { user } = useAuth()
+
+  if (!user) {
+    return (
+      <FailureModal
+        openFailureModal={true}
+        subMessage={"You must sign in to gain access to this page"}
+      />
+    )
+  } else {
+    return children
+  }
 }
 
 export default App

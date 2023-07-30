@@ -1,6 +1,6 @@
 export const FailureModal = ({
-  openFailureModal,
-  setOpenFailureModal,
+  openFailureModal = true,
+  setOpenFailureModal = () => {},
   mainMessage = "Error!",
   subMessage = "Looks like something went wrong, you might want to try again ",
 }) => {

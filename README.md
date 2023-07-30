@@ -2,12 +2,7 @@
 
 TODO tomorrow:
 
-1. Sort out Navbar UI changes
-
-- SignOut is also too small in responsive mode
-- Scroll up everytime link is changed
-
-2. Add protected Holdings page and link
+1. Add protected Holdings page and link
 
 Additional:
 
