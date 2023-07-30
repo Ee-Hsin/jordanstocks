@@ -110,8 +110,8 @@ export const NavBar = () => {
             })}
             {user && (
               <li className="text-gray-700 hover:text-indigo-600">
-                <Link to={"/holdings"} className="block">
-                  {"Holdings"}
+                <Link to={"/portfolio"} className="block">
+                  Portfolio
                 </Link>
               </li>
             )}

@@ -16,7 +16,7 @@ import { SingleBlog } from "./components/Blog/SingleBlog"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ContactPage } from "./pages/ContactPage"
 import { useAuth } from "./hooks/AuthContext"
-import { HoldingsPage } from "./pages/HoldingsPage"
+import { PortfolioPage } from "./pages/PortfolioPage"
 import { FailureModal } from "./components/UI/FailureModal"
 
 function App() {
@@ -33,10 +33,10 @@ function App() {
         </Route>
         <Route path="contact" element={<ContactPage />} />
         <Route
-          path="holdings"
+          path="portfolio"
           element={
             <ProtectedAuthRoute>
-              <HoldingsPage />
+              <PortfolioPage />
             </ProtectedAuthRoute>
           }
         />

@@ -66,3 +66,30 @@ export const FOOTERNAVS = [
     ],
   },
 ]
+
+export const PORTFOLIO = [
+  {
+    company: "Meta Platforms Inc",
+    ticker: "META",
+    units: 110,
+    price: 286.98,
+    currency: "USD",
+    value: 31567,
+  },
+  {
+    company: "Alphabet Inc.",
+    ticker: "GOOGL",
+    units: 181,
+    price: 119.7,
+    currency: "USD",
+    value: 21665,
+  },
+  {
+    company: "Adobe Inc",
+    ticker: "ADBE",
+    units: 20,
+    price: 488.99,
+    currency: "USD",
+    value: 9779,
+  },
+]

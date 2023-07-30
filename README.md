@@ -2,7 +2,8 @@
 
 TODO tomorrow:
 
-1. Add protected Holdings page and link
+1. Add UI for Holdings Page
+   Company, Ticker, Units, Price, Currency, Liquidation Value (USD)
 
 Additional:
 
@@ -36,10 +37,9 @@ Additional:
 - Add security to prevent inputs from being injected with HTML
 - Add CAPTCHA to prevent spam for the Blog subscription
 
-<b>Holdings Page:</b>
+<b>Portfolio Page:</b>
 
-- Appears on Navbar and is only visible user is logged in.
-- Similar UI to BlogPage with each section (for every 6 months) holding a link to a table of holdings.
+- Similar UI to BlogPage with each section (for every 6 months) holding a link to a table of stocks.
 
 <b>NavBar</b>
 
