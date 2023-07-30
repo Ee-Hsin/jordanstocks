@@ -37,3 +37,32 @@ export const PERFORMANCEFIGURES = [
     sp500Perf: "16.49%",
   },
 ]
+
+export const FOOTERNAVS = [
+  {
+    label: "Partnership",
+    items: [
+      {
+        href: "/letters",
+        name: "Letters",
+      },
+      {
+        href: "/blog",
+        name: "Blog",
+      },
+    ],
+  },
+  {
+    label: "Resources",
+    items: [
+      {
+        href: "/signin",
+        name: "Sign In",
+      },
+      {
+        href: "/contact",
+        name: "Contact Us",
+      },
+    ],
+  },
+]

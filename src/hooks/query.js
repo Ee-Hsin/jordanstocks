@@ -1,11 +1,26 @@
-import { useQuery } from "@tanstack/react-query"
-import { getCollection } from "../hooks/firestore"
+import { useQuery, useMutation } from "@tanstack/react-query"
+import {
+  getCollection,
+  getFirestoreTimestamp,
+  postDoc,
+} from "../hooks/firestore"
 
-const useBlogPosts = () => {
+const useFetchBlogPosts = () => {
   return useQuery({
     queryKey: ["blogPosts"],
     queryFn: () => getCollection("blogPosts"),
   })
 }
 
-export { useBlogPosts }
+const useSendEmailList = () => {
+  return useMutation({
+    mutationFn: (email) =>
+      postDoc(
+        "emailList",
+        { subscribedAt: getFirestoreTimestamp(), email: email },
+        email
+      ),
+  })
+}
+
+export { useFetchBlogPosts, useSendEmailList }

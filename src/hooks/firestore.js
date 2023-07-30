@@ -7,13 +7,12 @@ import {
   serverTimestamp,
 } from "firebase/firestore"
 
-// TODO: Add an arguments for clauses and spread that as additional
+// TODO: Add an arguments for clauses (like where, and orderby) and spread that as additional
 // parameters in getDocs.
 const getCollection = (collectionName) => {
   return getDocs(collection(db, collectionName))
 }
-
-const postDoc = (collectionName, docId, docData) => {
+const postDoc = (collectionName, docData, docId = undefined) => {
   // For if we provide a custom docId such as the email in a collection called "emailList"
   // docData can then be both current date  of subscription (generate via firestore) and
   // their email.
