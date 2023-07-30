@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { UserAuth } from "../../hooks/AuthContext"
+import { useAuth } from "../../hooks/AuthContext"
 import { useMediaPredicate } from "react-media-hook"
 
 const navigation = [
@@ -13,7 +13,7 @@ export const NavBar = () => {
   const [openNav, setOpenNav] = useState(false)
   const mediumAndAbove = useMediaPredicate("(min-width: 768px)")
   const location = useLocation()
-  const { user, logOut } = UserAuth()
+  const { user, logOut } = useAuth()
 
   //   We use this to ensure that every time the window is expanded, the hamburger closes and
   // the styles return to full screen mode.
