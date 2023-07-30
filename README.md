@@ -2,9 +2,8 @@
 
 TODO tomorrow:
 
-1. Add subscribing to newsletter from footer (move it into its own component and use it in that blog page section as well) (just adds an email to a document (called by the email but with dateSubscribed and email, to a collection called emailList))
-2. Timestamps! Confirm that our current functions work, https://stackoverflow.com/a/70451350/15426643
-3. Change userAuth to useAuth in AuthContext.jsx since custom hooks (aka functions) using hooks
+1. Timestamps! Confirm that our current functions work, https://stackoverflow.com/a/70451350/15426643
+2. Change userAuth to useAuth in AuthContext.jsx since custom hooks (aka functions) using hooks
    must start with 'use'. userAuth uses useContext so it must be called useAuth or useUserAuth.
    (useAuth is also what we called it in Speer)
 
