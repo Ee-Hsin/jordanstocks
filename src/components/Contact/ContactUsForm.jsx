@@ -11,6 +11,7 @@ export const ContactUsForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm()
 
   // TODO: Migrate this to useQuery, allows us to remove the need for the openSuccessModal useState's
@@ -33,7 +34,7 @@ export const ContactUsForm = () => {
         setOpenFailureModal(true)
       })
 
-    e.target.reset()
+    reset()
   }
 
   return (

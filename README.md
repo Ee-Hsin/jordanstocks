@@ -2,10 +2,9 @@
 
 TODO tomorrow:
 
-1. Finalize the react hook form validations in UpdatePortfolio component
-2. Make sure useMutation submits correctly
-3. create another fetch React query for Holdings page to fetch from firebase
-4. Migrate ContactUs Form to useQuery and add a loading state
+1. create another fetch React query for Holdings page to fetch from firebase
+2. Migrate ContactUs Form to useQuery and add a loading state
+3. BlogPage should not have logic in it, move the logic to BlogDisplay
 
 Additional:
 
@@ -46,7 +45,7 @@ Additional:
 
 <b>Portfolio Page:</b>
 
-- Make UpdatePortfolio, make it work
+- Add sorting ability (sort by % of portfolio ascending and descending)
 - Make it only available to user's with Admin permission
 - Similar UI to BlogPage with each section (for every 6 months) holding a link to a table of stocks.
 
@@ -76,22 +75,26 @@ https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
 
 1. Sign In form (only Email and Passsword inputs)
 
+- use checkForHTML to ensure no HTML
 - Captcha to prevent spam
 - Could use React Hook Form to feedback missing email or password, BUT unncessary as we alr put required on the input tags AND we dont need to feedback things like minimum or maximum characters since this is only the sign in page.
 
 2. Subscribe Blog forms (only Email)
 
+- We should check for HTML tags, but we also have an issue here as we name our docs by email names, and '/' is allowed in emails although it ruins our database.
 - Captcha to prevent spam
 - React Hook Form unnecessary as only one state
 
 3. Contact Us Form (First Name, Last Name, email, message)
 
+- use checkForHTML to ensure no HTML
 - Captcha to prevent spam
 - Used React Hook Form
 
 4. sendPortfolio form (stock name, ticker, units, price, currency, conversion)
 
 - Ensure all fields are filled and valid
-- Set default USD conversion rate to 1, and make calculations for value (in USD) before sending POST request
+- I just encuntered an issue where I put a '/' in the field, which SHOULD NOT be allowed because
+  it caused my database to have an error.
 - Prevent SQL or HTML injections
 - Captcha to prevent spam

@@ -1,18 +1,29 @@
-import { PORTFOLIO } from "../../content"
-
-const addCommas = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-}
+// import { PORTFOLIO } from "../../content"
+import { useGetPortfolio } from "../../hooks/query"
+import { FailureModal } from "../UI/FailureModal"
+import { Loader } from "../UI/Loader"
+import { addCommas } from "../usefulFunctions/usefulFunctions"
 
 export const PortfolioTable = () => {
-  let PORTFOLIO_SUM = 0
-  PORTFOLIO.forEach((stock) => {
-    PORTFOLIO_SUM += stock.value
-  })
+  const { isLoading, isError, isSuccess, data, error } = useGetPortfolio()
 
-  const generatedPortfolio = PORTFOLIO.map((stock) => {
-    return { ...stock, percent: (stock.value * 100) / PORTFOLIO_SUM }
-  })
+  // TODO: Eventually move these into state
+  let PORTFOLIO_SUM = 0
+  let generatedPortfolio = []
+
+  if (isSuccess) {
+    data.forEach((stock) => {
+      const stockData = stock.data()
+      PORTFOLIO_SUM += stockData.value
+    })
+
+    generatedPortfolio = data.docs.map((stock) => {
+      return {
+        ...stock.data(),
+        percent: (stock.data().value * 100) / PORTFOLIO_SUM,
+      }
+    })
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-5">
@@ -42,30 +53,42 @@ export const PortfolioTable = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {generatedPortfolio.map((item, idx) => (
-              <tr key={idx} className="text-center">
-                <td className="px-6 pr-0 py-4 whitespace-nowrap text-left">
-                  {item.ticker} - {item.company}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.units}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  ${item.price.toFixed(2)}
-                  {/* May not be 2 digits as form validation may not upload with 2 digits
-                  when price is added to database, but this just ensures it */}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {item.currency.toUpperCase()}
-                  {/* Should be uppercase already due to form validation when
-                  currency is added to database, but this just ensures it*/}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  ${addCommas(item.value)}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {item.percent.toFixed(2)}%
-                </td>
+            {isLoading && (
+              <tr className="text-center">
+                {/* Creates an array of length 6 to generate 6 of those Loaders */}
+                {Array.from({ length: 6 }, (x, i) => i).map((a, index) => (
+                  <td className="px-6 py-4 whitespace-nowrap" key={index}>
+                    <Loader small />
+                  </td>
+                ))}
               </tr>
-            ))}
+            )}
+            {isSuccess &&
+              generatedPortfolio.map((stock, idx) => (
+                <tr key={idx} className="text-center">
+                  <td className="px-6 pr-0 py-4 whitespace-nowrap text-left">
+                    {idx + 1 + ". "} {stock.ticker} - {stock.company}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{stock.units}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    ${stock.price.toFixed(2)}
+                    {/* May not be 2 digits as form validation may not upload with 2 digits
+                  when price is added to database, but this just ensures it */}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {stock.currency.toUpperCase()}
+                    {/* Should be uppercase already due to form validation when
+                  currency is added to database, but this just ensures it*/}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    ${addCommas(stock.value)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {stock.percent.toFixed(2)}%
+                  </td>
+                </tr>
+              ))}
+            {isError && <FailureModal subMessage={error.message} />}
           </tbody>
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr className="text-center">
@@ -78,7 +101,9 @@ export const PortfolioTable = () => {
               <td className="px-6 py-4 whitespace-nowrap">
                 ${addCommas(PORTFOLIO_SUM)}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">100%</td>
+              {isSuccess && (
+                <td className="px-6 py-4 whitespace-nowrap">100%</td>
+              )}
             </tr>
           </thead>
         </table>

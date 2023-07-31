@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "@tanstack/react-query"
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query"
 import {
   getCollection,
   getFirestoreTimestamp,
@@ -9,6 +9,13 @@ const useGetBlogPosts = () => {
   return useQuery({
     queryKey: ["blogPosts"],
     queryFn: () => getCollection("blogPosts"),
+  })
+}
+
+const useGetPortfolio = () => {
+  return useQuery({
+    queryKey: ["portfolio"],
+    queryFn: () => getCollection("portfolio"),
   })
 }
 
@@ -24,9 +31,16 @@ const usePostEmailList = () => {
 }
 
 const usePostPortfolio = () => {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: (stock) => postDoc("portfolio", stock, stock.ticker),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["portfolio"],
+      })
+    },
   })
 }
 
-export { useGetBlogPosts, usePostEmailList, usePostPortfolio }
+export { useGetBlogPosts, useGetPortfolio, usePostEmailList, usePostPortfolio }

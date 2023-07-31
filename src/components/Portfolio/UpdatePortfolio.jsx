@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { Loader } from "../UI/Loader"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
+import { checkSpecialChars } from "../usefulFunctions/usefulFunctions"
 
 export const UpdatePortfolio = () => {
   const mutation = usePostPortfolio()
@@ -13,6 +14,7 @@ export const UpdatePortfolio = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm()
 
   const handleUpdatePortfolio = (data, e) => {
@@ -23,6 +25,9 @@ export const UpdatePortfolio = () => {
 
     console.log(dataWithValue)
     mutation.mutate(dataWithValue)
+
+    // Resets the form
+    reset()
   }
 
   return (
@@ -51,6 +56,7 @@ export const UpdatePortfolio = () => {
                   {...register("company", {
                     required: true,
                     maxLength: 50,
+                    validate: (companyName) => checkSpecialChars(companyName),
                   })}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
@@ -64,13 +70,23 @@ export const UpdatePortfolio = () => {
                     Company name cannot exceed 50 characters
                   </p>
                 )}
+                {errors.company?.type === "validate" && (
+                  <p role="alert" className="text-red-500">
+                    No special characters are allowed
+                  </p>
+                )}
               </div>
               <div>
                 <label className="font-medium">Ticker</label>
                 <input
                   type="text"
                   name="ticker"
-                  {...register("ticker", { required: true, maxLength: 10 })}
+                  {...register("ticker", {
+                    required: true,
+                    setValueAs: (ticker) => ticker.toUpperCase(),
+                    maxLength: 10,
+                    validate: (ticker) => checkSpecialChars(ticker),
+                  })}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
                 {errors.ticker?.type === "required" && (
@@ -81,6 +97,11 @@ export const UpdatePortfolio = () => {
                 {errors.ticker?.type === "maxLength" && (
                   <p role="alert" className="text-red-500">
                     Ticker cannot exceed 10 characters
+                  </p>
+                )}
+                {errors.ticker?.type === "validate" && (
+                  <p role="alert" className="text-red-500">
+                    No special characters are allowed
                   </p>
                 )}
               </div>
@@ -159,6 +180,7 @@ export const UpdatePortfolio = () => {
                   setValueAs: (currency) => currency.toUpperCase(),
                   minLength: 3,
                   maxLength: 3,
+                  validate: (curr) => checkSpecialChars(curr),
                 })}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
@@ -173,18 +195,24 @@ export const UpdatePortfolio = () => {
                   Currency must be 3 chaacters
                 </p>
               )}
+              {errors.currency?.type === "validate" && (
+                <p role="alert" className="text-red-500">
+                  No special characters are allowed
+                </p>
+              )}
             </div>
             <div>
               <label className="font-medium">
-                Conversion rate to USD (if applicable), defaults to 1
+                Conversion rate to USD (if applicable). Put 1 if Currency is
+                USD.
               </label>
               <input
                 type="number"
                 name="conversionRate"
-                defaultValue={1}
                 step="0.000001"
                 {...register("conversionRate", {
                   required: true,
+                  valueAsNumber: true,
                   validate: (conversionRate) => conversionRate > 0,
                 })}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
