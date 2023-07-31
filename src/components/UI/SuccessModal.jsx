@@ -1,14 +1,13 @@
-export const SuccessModal = ({
-  openSuccessModal,
-  setOpenSuccessModal,
-  mainMessage = "Success!",
-  subMessage,
-}) => {
-  return openSuccessModal ? (
+import { useState } from "react"
+
+export const SuccessModal = ({ mainMessage = "Success!", subMessage }) => {
+  const [open, setOpen] = useState(true)
+
+  return open ? (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
         className="fixed inset-0 w-full h-full bg-black opacity-40"
-        onClick={() => setOpenSuccessModal(false)}
+        onClick={() => setOpen(false)}
       ></div>
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">

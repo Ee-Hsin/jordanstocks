@@ -6,8 +6,8 @@ import { UpdatePortfolio } from "../components/Portfolio/UpdatePortfolio"
 export const PortfolioPage = () => {
   return (
     <div>
-      <UpdatePortfolio />
       <PortfolioTable />
+      <UpdatePortfolio />
     </div>
   )
 }

@@ -2,9 +2,10 @@
 
 TODO tomorrow:
 
-1. Use form validation to ensure Update Portfolio Holdings submits properly (can apply learnings to the Contact Us Form)
+1. Finalize the react hook form validations in UpdatePortfolio component
 2. Make sure useMutation submits correctly
 3. create another fetch React query for Holdings page to fetch from firebase
+4. Migrate ContactUs Form to useQuery and add a loading state
 
 Additional:
 
@@ -15,6 +16,7 @@ Additional:
 5. Delete all the console.log's when everything is done
 6. Once released on site, register with Google and add a CAPTCHA to prevent bots on Contact Form.
 7. Make the fonts and the images bigger
+8. Cover any remaining TODO: comments in the project
 
 <b>Letters Page:</b>
 

@@ -50,7 +50,7 @@ export const PortfolioTable = () => {
                 <td className="px-6 py-4 whitespace-nowrap">{item.units}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   ${item.price.toFixed(2)}
-                  {/* Should be 2 digits already due to form validation 
+                  {/* May not be 2 digits as form validation may not upload with 2 digits
                   when price is added to database, but this just ensures it */}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">

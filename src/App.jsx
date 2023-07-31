@@ -70,7 +70,6 @@ const ProtectedAuthRoute = ({ children }) => {
   if (!user) {
     return (
       <FailureModal
-        openFailureModal={true}
         subMessage={"You must sign in to gain access to this page"}
       />
     )

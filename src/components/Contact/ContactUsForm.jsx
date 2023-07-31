@@ -13,6 +13,7 @@ export const ContactUsForm = () => {
     formState: { errors },
   } = useForm()
 
+  // TODO: Migrate this to useQuery, allows us to remove the need for the openSuccessModal useState's
   const onSubmit = (data, e) => {
     console.log(e)
     console.log(data)
@@ -37,16 +38,13 @@ export const ContactUsForm = () => {
 
   return (
     <main className="py-7">
-      <SuccessModal
-        openSuccessModal={openSuccessModal}
-        setOpenSuccessModal={setOpenSuccessModal}
-        mainMessage={"Form Submitted!"}
-        subMessage={"We'll get back to you within 3-5 working days"}
-      />
-      <FailureModal
-        openFailureModal={openFailureModal}
-        setOpenFailureModal={setOpenFailureModal}
-      />
+      {openSuccessModal && (
+        <SuccessModal
+          mainMessage={"Form Submitted!"}
+          subMessage={"We'll get back to you within 3-5 working days"}
+        />
+      )}
+      {openFailureModal && <FailureModal />}
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="max-w-lg mx-auto space-y-3 sm:text-center">
           <h3 className="text-indigo-600 font-semibold">Contact Us</h3>

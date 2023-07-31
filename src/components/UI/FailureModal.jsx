@@ -1,14 +1,17 @@
+// import { Link } from "react-router-dom"
+import { useState } from "react"
+
 export const FailureModal = ({
-  openFailureModal = true,
-  setOpenFailureModal = () => {},
   mainMessage = "Error!",
   subMessage = "Looks like something went wrong, you might want to try again ",
 }) => {
-  return openFailureModal ? (
+  const [open, setOpen] = useState(true)
+
+  return open ? (
     <div className="fixed inset-0 z-10 overflow-y-auto">
       <div
         className="fixed inset-0 w-full h-full bg-black opacity-40"
-        onClick={() => setOpenFailureModal(false)}
+        onClick={() => setOpen(false)}
       ></div>
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
@@ -34,6 +37,7 @@ export const FailureModal = ({
               <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
                 {subMessage}
               </p>
+              {/* <Link to="/">Click here to Return to the Main Page</Link> */}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { usePostEmailList } from "../../hooks/query"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
@@ -6,20 +6,7 @@ import { Loader } from "../UI/Loader"
 
 export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   const [email, setEmail] = useState("")
-  const [openSuccessModal, setOpenSuccessModal] = useState(false)
-  const [openFailureModal, setOpenFailureModal] = useState(false)
   const mutation = usePostEmailList()
-
-  useEffect(() => {
-    if (mutation.status === "error") {
-      setOpenFailureModal(true)
-    } else if (mutation.status === "success") {
-      setOpenSuccessModal(true)
-    } else {
-      setOpenFailureModal(false)
-      setOpenSuccessModal(false)
-    }
-  }, [mutation.status])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -51,17 +38,11 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   return (
     <>
       {mutation.isError && (
-        <FailureModal
-          openFailureModal={openFailureModal}
-          setOpenFailureModal={setOpenFailureModal}
-          mainMessage="Oops, looks like something went wrong."
-        />
+        <FailureModal mainMessage="Oops, looks like something went wrong." />
       )}
       {mutation.isLoading ? <Loader small /> : componentToRender}
       {mutation.isSuccess && (
         <SuccessModal
-          openSuccessModal={openSuccessModal}
-          setOpenSuccessModal={setOpenSuccessModal}
           mainMessage="Subscribed!"
           subMessage="Thanks for subscribing to our Newsletter!"
         />
