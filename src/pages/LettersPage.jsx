@@ -1,26 +1,6 @@
 import { Link } from "react-router-dom"
-
-const letters = [
-  {
-    title: "UI – Front End Dev",
-    desc: "Currently, ManTech is seeking a motivated, career and customer-oriented Software Developer to join our team in Fort Meade, MD.",
-    date: "May 17, 2022",
-    href: "1",
-  },
-  {
-    title: "Back End Developer",
-    desc: " Help us solve problems and develop great user interface tools for our developers.",
-    date: "Nov 11, 2022",
-    salary: "$105,000 USD",
-    href: "2",
-  },
-  {
-    title: "Full-Stack Developer",
-    desc: "This position is 100% remote, working as part of a small, multi-functional team. You must be confident at working alone.",
-    date: "Jan 2, 2022",
-    href: "3",
-  },
-]
+import { letters } from "../content"
+import { TextEditor } from "../components/TextEditor"
 
 export const LettersPage = () => {
   return (
@@ -30,6 +10,7 @@ export const LettersPage = () => {
           Partnership Bi-Annual Letters
         </h1>
       </div>
+      <TextEditor />
 
       <ul className="mt-12 space-y-6">
         {letters.map((item, idx) => (

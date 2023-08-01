@@ -2,7 +2,8 @@
 
 TODO tomorrow:
 
-1. Add UI for Letters Page
+1. Add a Rich Text Editor to publish blogs and letters
+2. Add a Rich displayer to show blogs and letters
 
 Additional:
 
@@ -92,3 +93,10 @@ https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
   it caused my database to have an error.
 - Prevent SQL or HTML injections
 - Captcha to prevent spam
+
+<b>Security</b>
+
+Stopping bots from spamming forms:
+https://www.mullie.eu/how-to-prevent-form-spam/
+
+HTML Sanitization: https://mobileappcircular.com/securing-your-website-with-html-input-sanitization-5afa91934120
