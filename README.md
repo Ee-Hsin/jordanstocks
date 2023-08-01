@@ -2,9 +2,8 @@
 
 TODO tomorrow:
 
-1. Migrate ContactUs Form to useQuery and add a loading state
-2. Fix the '/' issue with subscribing to emal lists
-3. BlogPage should not have logic in it, move the logic to BlogDisplay
+1. Fix the '/' issue with subscribing to email lists
+2. BlogPage should not have logic in it, move the logic to BlogDisplay
 
 Additional:
 
