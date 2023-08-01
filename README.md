@@ -2,7 +2,7 @@
 
 TODO tomorrow:
 
-1. BlogPage should not have logic in it, move the logic to BlogDisplay
+1. Add UI for Letters Page
 
 Additional:
 
