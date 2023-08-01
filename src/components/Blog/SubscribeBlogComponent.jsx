@@ -3,15 +3,22 @@ import { usePostEmailList } from "../../hooks/query"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
+import { checkForNoHTML } from "../usefulFunctions/usefulFunctions"
 
 export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   const [email, setEmail] = useState("")
+  const [hasHtmlError, setHasHtmlError] = useState(false)
   const mutation = usePostEmailList()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!email) return
-
+    if (!checkForNoHTML(email)) {
+      setHasHtmlError(true)
+      return
+    } else {
+      setHasHtmlError(false)
+    }
     mutation.mutate(email)
     setEmail("")
   }
@@ -41,7 +48,14 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
       {mutation.isError && (
         <FailureModal mainMessage="Oops, looks like something went wrong." />
       )}
-      {mutation.isLoading ? <Loader small /> : componentToRender}
+      {mutation.isLoading ? (
+        <Loader small />
+      ) : (
+        <>
+          {componentToRender}{" "}
+          {hasHtmlError && <p>Email cannot contain Angle Brackets</p>}
+        </>
+      )}
       {mutation.isSuccess && (
         <SuccessModal
           mainMessage="Subscribed!"

@@ -1,10 +1,11 @@
+// This regex excludes special chars but includes _.,: and space
 export function checkSpecialChars(str) {
-  // This regex excludes special chars but includes _.,: and space
   const regex = /^[-a-zA-Z0-9_.,:\s]+$/
   return regex.test(str)
 }
 
-export const checkForHTML = (str) => {
+// This function returns false if there are HTML tags
+export const checkForNoHTML = (str) => {
   const regex = /^[^<>]*$/
   return regex.test(str)
 }
