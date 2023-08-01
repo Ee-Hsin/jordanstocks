@@ -2,8 +2,8 @@
 
 TODO tomorrow:
 
-1. create another fetch React query for Holdings page to fetch from firebase
-2. Migrate ContactUs Form to useQuery and add a loading state
+1. Migrate ContactUs Form to useQuery and add a loading state
+2. Fix the '/' issue with subscribing to emal lists
 3. BlogPage should not have logic in it, move the logic to BlogDisplay
 
 Additional:
@@ -15,7 +15,8 @@ Additional:
 5. Delete all the console.log's when everything is done
 6. Once released on site, register with Google and add a CAPTCHA to prevent bots on Contact Form.
 7. Make the fonts and the images bigger
-8. Cover any remaining TODO: comments in the project
+8. Setup firebase rules for security
+9. Cover any remaining TODO: comments in the project
 
 <b>Letters Page:</b>
 
@@ -47,12 +48,8 @@ Additional:
 
 - Add sorting ability (sort by % of portfolio ascending and descending)
 - Make it only available to user's with Admin permission
-- Similar UI to BlogPage with each section (for every 6 months) holding a link to a table of stocks.
 
 <b>NavBar</b>
-
-- SignOut is also too small in responsive mode\
-- Scroll up everytime link is changed
 
 <b>Admin and Hooks</b>
 

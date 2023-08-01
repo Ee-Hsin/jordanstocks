@@ -15,7 +15,7 @@ const useGetBlogPosts = () => {
 const useGetPortfolio = () => {
   return useQuery({
     queryKey: ["portfolio"],
-    queryFn: () => getCollection("portfolio"),
+    queryFn: () => getCollection("portfolio", ["value", "desc"]),
   })
 }
 

@@ -1,6 +1,8 @@
 import { db } from "../firebase"
 import {
   collection,
+  query,
+  orderBy,
   getDocs,
   setDoc,
   doc,
@@ -9,8 +11,14 @@ import {
 
 // TODO: Add an arguments for clauses (like where, and orderby) and spread that as additional
 // parameters in getDocs.
-const getCollection = (collectionName) => {
-  return getDocs(collection(db, collectionName))
+// Order Query i optional and should be an array []
+const getCollection = (collectionName, orderQuery) => {
+  let q = query(collection(db, collectionName))
+
+  if (orderQuery) {
+    q = query(collection(db, collectionName), orderBy(...orderQuery))
+  }
+  return getDocs(q)
 }
 const postDoc = (collectionName, docData, docId = undefined) => {
   // For if we provide a custom docId such as the email in a collection called "emailList"

@@ -109,7 +109,6 @@ export const UpdatePortfolio = () => {
             <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
               <div>
                 <label className="font-medium">Units</label>
-                {/* TODO: Add callback function to ensure this is an Integer */}
                 <input
                   type="number"
                   name="units"
@@ -140,7 +139,6 @@ export const UpdatePortfolio = () => {
               </div>
               <div>
                 <label className="font-medium">Price</label>
-                {/* TODO: Add callback function to ensure this is not more than 2 decimal places */}
                 <input
                   type="number"
                   name="price"
