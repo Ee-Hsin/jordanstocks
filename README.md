@@ -2,8 +2,10 @@
 
 TODO tomorrow:
 
-1. Add a Rich Text Editor to publish blogs and letters
-2. Add a Rich displayer to show blogs and letters
+1. Firebase Storage for users to download PDFs of the Letters
+2. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
+3. Change the Blog Displayer to accomodate rich text! (Will have to dangerously set
+   inner HTML so need to watch out)
 
 Additional:
 
@@ -19,8 +21,11 @@ Additional:
 
 <b>Letters Page:</b>
 
-- Similar to Blog Page UI
-- In Each Letter, has downloadable PDF taken from firebase storage.
+- Letter Editor is just a title, a Javascript date that we select, and an
+  upload PDF section. When form is submitted, we save it as a doc of a collection
+  called 'letters'. Doc will look like this:
+  {title: "2023 Annual Letter", date: "25th July", pdf: "download link" } and we
+  get the downlad link with getDownloadUrl when we upload the PDF file.
 
 <b>Blog Page:</b>
 
@@ -95,6 +100,8 @@ https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
 - Captcha to prevent spam
 
 <b>Security</b>
+
+Write Firebase Rules
 
 Stopping bots from spamming forms:
 https://www.mullie.eu/how-to-prevent-form-spam/

@@ -96,22 +96,13 @@ export const PORTFOLIO = [
 
 export const letters = [
   {
-    title: "UI – Front End Dev",
-    desc: "Currently, ManTech is seeking a motivated, career and customer-oriented Software Developer to join our team in Fort Meade, MD.",
-    date: "May 17, 2022",
-    href: "1",
+    title: "Bi-Annual Interim Letter 2023",
+    date: "July 2023",
+    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Bi-Annual%20Interim%20Letter%202023.pdf?alt=media&token=1222792f-91c5-46e8-a521-06fdbe9a732a",
   },
   {
-    title: "Back End Developer",
-    desc: " Help us solve problems and develop great user interface tools for our developers.",
-    date: "Nov 11, 2022",
-    salary: "$105,000 USD",
-    href: "2",
-  },
-  {
-    title: "Full-Stack Developer",
-    desc: "This position is 100% remote, working as part of a small, multi-functional team. You must be confident at working alone.",
-    date: "Jan 2, 2022",
-    href: "3",
+    title: "Founding Letter",
+    date: "February 2023",
+    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Partnership%20Founding%20Letter.pdf?alt=media&token=7d4ff3e4-441f-4133-88f9-72569fe90151",
   },
 ]
