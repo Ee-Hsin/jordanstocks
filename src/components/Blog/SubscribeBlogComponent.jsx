@@ -11,6 +11,7 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!email) return
+
     mutation.mutate(email)
     setEmail("")
   }

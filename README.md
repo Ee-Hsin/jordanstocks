@@ -77,7 +77,7 @@ https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
 
 2. Subscribe Blog forms (only Email)
 
-- We should check for HTML tags, but we also have an issue here as we name our docs by email names, and '/' is allowed in emails although it ruins our database.
+- We should check for HTML tags, but we also have an issue here as we name our docs by email names, and '/' is allowed in emails although it ruins our database. We also must allow '+'
 - Captcha to prevent spam
 - React Hook Form unnecessary as only one state
 
