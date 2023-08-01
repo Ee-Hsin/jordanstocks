@@ -5,6 +5,7 @@ import {
   orderBy,
   getDocs,
   setDoc,
+  addDoc,
   doc,
   serverTimestamp,
 } from "firebase/firestore"
@@ -20,16 +21,17 @@ const getCollection = (collectionName, orderQuery) => {
   }
   return getDocs(q)
 }
-const postDoc = (collectionName, docData, docId = undefined) => {
-  // For if we provide a custom docId such as the email in a collection called "emailList"
-  // docData can then be both current date  of subscription (generate via firestore) and
-  // their email.
+
+// For adding NEW docs.
+// DO NOT use for updating docs unless you specify a docId.
+const postDoc = (collectionName, docData, docId) => {
+  // For if we provide a custom docId
   if (docId) {
     return setDoc(doc(db, collectionName, docId), docData)
-    // If we did not provide a custom docId, we just reference a collection and when the doc is
-    // added, it will be generated with a random Id.
+    // If we did not provide a custom docId, we just reference a collection and
+    // when the doc is added, it will be generated with a random Id.
   } else {
-    return setDoc(collection(collectionName), docData)
+    return addDoc(collection(db, collectionName), docData)
   }
 }
 

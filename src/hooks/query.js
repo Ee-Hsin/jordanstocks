@@ -22,11 +22,10 @@ const useGetPortfolio = () => {
 const usePostEmailList = () => {
   return useMutation({
     mutationFn: (email) =>
-      postDoc(
-        "emailList",
-        { subscribedAt: getFirestoreTimestamp(), email: email },
-        email
-      ),
+      postDoc("emailList", {
+        subscribedAt: getFirestoreTimestamp(),
+        email: email,
+      }),
   })
 }
 
