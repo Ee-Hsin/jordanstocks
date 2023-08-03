@@ -103,6 +103,6 @@ export const letters = [
   {
     title: "Founding Letter",
     date: "February 2023",
-    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Partnership%20Founding%20Letter.pdf?alt=media&token=7d4ff3e4-441f-4133-88f9-72569fe90151",
+    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Partnership%20Founding%20Letter.pdf?alt=media&token=f47c67e9-e91f-484d-ba8a-0c897eb6fa6a",
   },
 ]

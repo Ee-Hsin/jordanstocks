@@ -2,10 +2,10 @@
 
 TODO tomorrow:
 
-1. Firebase Storage for users to download PDFs of the Letters
-2. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
-3. Change the Blog Displayer to accomodate rich text! (Will have to dangerously set
-   inner HTML so need to watch out)
+1. Make Letter Editor upload (just need to work on the uploadStorage function now)
+2. Make LetterDisplay fetch from firestore
+3. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
+4. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
 
 Additional:
 
@@ -18,6 +18,7 @@ Additional:
 7. Make the fonts and the images bigger
 8. Setup firebase rules for security
 9. Cover any remaining TODO: comments in the project
+10. Firestore seems to have a TON of reads, look into that and cleanup functions
 
 <b>Letters Page:</b>
 

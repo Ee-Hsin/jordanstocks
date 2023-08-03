@@ -1,4 +1,4 @@
-import { db } from "../firebase"
+import { db, storage } from "../firebase"
 import {
   collection,
   query,
@@ -9,6 +9,7 @@ import {
   doc,
   serverTimestamp,
 } from "firebase/firestore"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
 // TODO: Add an arguments for clauses (like where, and orderby) and spread that as additional
 // parameters in getDocs.
@@ -35,6 +36,20 @@ const postDoc = (collectionName, docData, docId) => {
   }
 }
 
+const uploadToStorage = (path, file) => {
+  const storageRef = ref(storage, path) //Path could be letters/Seraya Bi Annual Letter.pdf (they allow spaces I think)
+
+  //TODO: Get download URL after sending and then return that download URL
+  uploadBytes(storageRef, file).then((snapshot) => {
+    getDownloadURL(snapshot.ref).then((downloadURL) => {
+      console.log("File available at", downloadURL)
+    })
+  })
+
+  //TODO: Also may have to handle errors here if there are any, or maybe if they are thrown
+  //useQuery will catch them, idk
+}
+
 // Returns current firestore serverTimestamp (unlike regular firebase firestore Timestamp,
 // it cannot be read or converted to a date until it is fetched back from firestore)
 const getFirestoreTimestamp = () => {
@@ -49,6 +64,7 @@ const convertFirestoreTimestamp = (timestamp) => {
 export {
   getCollection,
   postDoc,
+  uploadToStorage,
   getFirestoreTimestamp,
   convertFirestoreTimestamp,
 }
