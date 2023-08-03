@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { MONTHNAMES } from "../../content"
 
 export const LettersCard = ({ letter }) => {
   return (
@@ -9,7 +10,11 @@ export const LettersCard = ({ letter }) => {
             <h3 className="text-xl font-medium text-cyan-600">
               {letter.title}
             </h3>
-            <p className="text-gray-500 mt-2 pr-2">{letter.date}</p>
+            <p className="text-gray-500 mt-2 pr-2">
+              {MONTHNAMES[letter.date.toDate().getMonth()]}
+              {", "}
+              {letter.date.toDate().getFullYear()}
+            </p>
           </div>
         </div>
         <div className="mt-4 items-center space-y-4 text-sm sm:flex sm:space-x-4 sm:space-y-0">

@@ -1,5 +1,3 @@
-//import { useState } from "react";
-
 import { usePostLetters } from "../../hooks/query"
 import { useForm } from "react-hook-form"
 import { FailureModal } from "../UI/FailureModal"
@@ -23,10 +21,8 @@ export const AddLetters = () => {
   const handleAddLetter = (data, e) => {
     e.preventDefault()
 
-    console.log("Data", data)
-    console.log("File", fileToUpload)
-
-    mutation.mutate({ ...data, file: fileToUpload })
+    // Convert the string date to a JavaScript Object and add the file we upload
+    mutation.mutate({ ...data, date: new Date(data.date), file: fileToUpload })
     // Resets the form
     reset()
   }

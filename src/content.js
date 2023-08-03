@@ -2,6 +2,21 @@ import castleMoatImg from "./img/CastleMoat.jpg"
 import watchImg from "./img/WatchResized.jpg"
 import coinsImg from "./img/CoinsResized.jpg"
 
+export const MONTHNAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+
 export const STRATEGYSECTION = [
   {
     title: "Identify Great Companies",

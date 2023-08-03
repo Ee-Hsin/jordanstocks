@@ -2,11 +2,8 @@
 
 TODO tomorrow:
 
-1. Create firebase functions that trigger onEvent new Doc in Letters collection, goes to storage
-   and puts the download URL into that new Doc under fileUrl.
-   OR... after LetterDisplay fetches from Firestore, use the titles to fetch the URLs from firestore storage
-
-2. Make LetterDisplay fetch from firestore
+1. Settle the dates with the Letters
+2. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
 3. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
 4. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
 

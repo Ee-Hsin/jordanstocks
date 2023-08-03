@@ -9,7 +9,7 @@ export const LettersDisplay = () => {
     <section className="mt-12 max-w-screen-lg mx-auto px-4 md:px-8">
       <div>
         <h1 className="text-gray-800 text-3xl font-semibold">
-          Partnership Letters
+          Seraya Partnership Letters
         </h1>
       </div>
       {isLoading && <Loader />}

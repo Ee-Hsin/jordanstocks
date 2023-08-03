@@ -26,7 +26,7 @@ export const SignIn = () => {
         console.log(userCredential)
         setErr(false)
         setLoading(false)
-        navigate("/letters")
+        navigate("/portfolio")
       })
       .catch((err) => {
         console.log(err)
