@@ -9,6 +9,10 @@ export const ContactUsForm = () => {
   const [openSuccessModal, setOpenSuccessModal] = useState(false)
   const [openFailureModal, setOpenFailureModal] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  /* 这是一个蜜罐 */
+  const [address, setAddress] = useState("")
+
   const {
     register,
     handleSubmit,
@@ -16,11 +20,25 @@ export const ContactUsForm = () => {
     reset,
   } = useForm()
 
-  // TODO: Migrate this to useQuery, allows us to remove the need for the openSuccessModal useState's
   const onSubmit = (data, e) => {
     // console.log(e)
     // console.log(data)
     setLoading(true)
+    //Resetting them just in case the user submitted more than 1 form in a row without
+    //refreshing the page (meaning )
+    setOpenSuccessModal(false)
+    setOpenFailureModal(false)
+
+    /* 这是一个蜜罐 */
+    if (address) {
+      setTimeout(() => {
+        setLoading(false)
+        setOpenSuccessModal(true)
+        reset()
+      }, 1000)
+      return
+    }
+
     emailjs
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
@@ -70,6 +88,20 @@ export const ContactUsForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
                 <div>
+                  {/* 这是一个蜜罐 */}
+                  <label className="font-medium absolute left-[-9999px]">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Your Address"
+                    tabIndex="-1"
+                    autoComplete="new-password"
+                    className="text-3xl absolute left-[-9999px]"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
                   <label className="font-medium">First name</label>
                   <input
                     {...register("firstName", {

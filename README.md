@@ -2,9 +2,11 @@
 
 TODO tomorrow:
 
-1. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
-2. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
-3. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
+1. Stop bots from spamming forms
+2. Double check Cross Site Scripting
+3. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
+4. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
+5. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
 
 Additional:
 
@@ -67,43 +69,26 @@ Additional:
 
 <b>Forms</b>
 
+(Public -> Contact Us, Email Subscribe, Sign In)
+
+- Honeypot for these public forms (except Sign In)
+
+(Private -> UpdateLetters, UpdateBlogs, UpdatePortfolio)
+
+- HTML check for UpdateLetters
+
+<b>Security</b>
+
+1. Write Firebase Rules
+
+2. Stopping bots from spamming forms:
+   https://www.mullie.eu/how-to-prevent-form-spam/
+
+3. HTML Sanitization: https://mobileappcircular.com/securing-your-website-with-html-input-sanitization-5afa91934120
+
 Input into Firebase Authentication is handled by Firebase,
 but input into Firestore (such as through subscribe Blog), should be sanitized.
 
 Output is always sanitized:
 "JSX expressions {} automatically take care of encoding HTML before rendering, which means even if u don't sanitise your input your webpage is XSS safe."
 https://stackoverflow.com/questions/43584685/input-sanitization-in-reactjs
-
-1. Sign In form (only Email and Passsword inputs)
-
-- use checkForHTML to ensure no HTML
-- Captcha to prevent spam
-- Could use React Hook Form to feedback missing email or password, BUT unncessary as we alr put required on the input tags AND we dont need to feedback things like minimum or maximum characters since this is only the sign in page.
-
-2. Subscribe Blog forms (only Email)
-
-- Captcha to prevent spam
-- React Hook Form unnecessary as only one state
-
-3. Contact Us Form (First Name, Last Name, email, message)
-
-- use checkForHTML to ensure no HTML
-- Captcha to prevent spam
-- Used React Hook Form
-
-4. sendPortfolio form (stock name, ticker, units, price, currency, conversion)
-
-- Ensure all fields are filled and valid
-- I just encuntered an issue where I put a '/' in the field, which SHOULD NOT be allowed because
-  it caused my database to have an error.
-- Prevent SQL or HTML injections
-- Captcha to prevent spam
-
-<b>Security</b>
-
-Write Firebase Rules
-
-Stopping bots from spamming forms:
-https://www.mullie.eu/how-to-prevent-form-spam/
-
-HTML Sanitization: https://mobileappcircular.com/securing-your-website-with-html-input-sanitization-5afa91934120

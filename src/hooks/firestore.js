@@ -11,9 +11,7 @@ import {
 } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
-// TODO: Add an arguments for clauses (like where, and orderby) and spread that as additional
-// parameters in getDocs.
-// Order Query i optional and should be an array []
+// Order Query is optional and should be an array []
 const getCollection = (collectionName, orderQuery) => {
   let q = query(collection(db, collectionName))
 
