@@ -23,7 +23,7 @@ export const UpdatePortfolio = () => {
     const value = Math.round(data.units * data.price * data.conversionRate)
     const dataWithValue = { ...data, value: value }
 
-    console.log(dataWithValue)
+    // console.log(dataWithValue)
     mutation.mutate(dataWithValue)
 
     // Resets the form

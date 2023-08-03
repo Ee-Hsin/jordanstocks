@@ -33,7 +33,7 @@ export const NavBar = () => {
   const handleSignOut = () => {
     logOut()
       .then(() => {
-        console.log("Logged out")
+        // console.log("Logged out")
       })
       .catch((error) => {
         console.log(error)

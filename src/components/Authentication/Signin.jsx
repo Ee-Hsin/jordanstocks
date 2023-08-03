@@ -23,7 +23,7 @@ export const SignIn = () => {
     setLoading(true)
     signIn(emailRef.current.value, pswRef.current.value)
       .then((userCredential) => {
-        console.log(userCredential)
+        // console.log(userCredential)
         setErr(false)
         setLoading(false)
         navigate("/portfolio")

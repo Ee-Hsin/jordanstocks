@@ -2,10 +2,9 @@
 
 TODO tomorrow:
 
-1. Settle the dates with the Letters
-2. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
-3. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
-4. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
+1. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
+2. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
+3. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
 
 Additional:
 

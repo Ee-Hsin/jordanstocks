@@ -18,8 +18,8 @@ export const ContactUsForm = () => {
 
   // TODO: Migrate this to useQuery, allows us to remove the need for the openSuccessModal useState's
   const onSubmit = (data, e) => {
-    console.log(e)
-    console.log(data)
+    // console.log(e)
+    // console.log(data)
     setLoading(true)
     emailjs
       .sendForm(
@@ -29,12 +29,12 @@ export const ContactUsForm = () => {
         import.meta.env.VITE_API_PUBLIC_KEY
       )
       .then((result) => {
-        console.log(result.text)
+        // console.log(result.text)
         setLoading(false)
         setOpenSuccessModal(true)
       })
       .catch((error) => {
-        console.log(error.text)
+        // console.log(error.text)
         setLoading(false)
         setOpenFailureModal(true)
       })
