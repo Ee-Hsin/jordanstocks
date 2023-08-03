@@ -8,10 +8,20 @@ import { checkForNoHTML } from "../usefulFunctions/usefulFunctions"
 export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   const [email, setEmail] = useState("")
   const [hasHtmlError, setHasHtmlError] = useState(false)
+  /* 这是一个蜜罐 */
+  const [username, setUsername] = useState("")
+
   const mutation = usePostEmailList()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    /* 这是一个蜜罐 */
+    if (username) {
+      setEmail("")
+      return
+    }
+
     if (!email) return
     if (!checkForNoHTML(email)) {
       setHasHtmlError(true)
@@ -31,6 +41,9 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
         handleSubmit={handleSubmit}
         email={email}
         setEmail={setEmail}
+        /* 这是一个蜜罐 */
+        username={username}
+        setUsername={setUsername}
       />
     )
   } else if (variant === "blog") {
@@ -39,6 +52,9 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
         handleSubmit={handleSubmit}
         email={email}
         setEmail={setEmail}
+        /* 这是一个蜜罐 */
+        username={username}
+        setUsername={setUsername}
       />
     )
   }
@@ -66,11 +82,30 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   )
 }
 
-const FooterSubscribe = ({ handleSubmit, email, setEmail }) => {
+const FooterSubscribe = ({
+  handleSubmit,
+  email,
+  setEmail,
+  /* 这是一个蜜罐 */
+  username,
+  setUsername,
+}) => {
   return (
     <form onSubmit={handleSubmit}>
       <label className="block pt-4 pb-2">Subscribe to our Blog</label>
       <div className="max-w-sm flex items-center border rounded-md p-1">
+        {/* 这是一个蜜罐 */}
+        <label className="font-medium absolute left-[-9999px]">Address</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Your Username"
+          tabIndex="-1"
+          autoComplete="new-password"
+          className="text-3xl absolute left-[-9999px]"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Enter your email"
@@ -87,7 +122,14 @@ const FooterSubscribe = ({ handleSubmit, email, setEmail }) => {
   )
 }
 
-const BlogPageSubscribe = ({ handleSubmit, email, setEmail }) => {
+const BlogPageSubscribe = ({
+  handleSubmit,
+  email,
+  setEmail,
+  /* 这是一个蜜罐 */
+  username,
+  setUsername,
+}) => {
   return (
     <form
       onSubmit={handleSubmit}
@@ -108,6 +150,18 @@ const BlogPageSubscribe = ({ handleSubmit, email, setEmail }) => {
             d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
           />
         </svg>
+        {/* 这是一个蜜罐 */}
+        <label className="font-medium absolute left-[-9999px]">Address</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="Your Username"
+          tabIndex="-1"
+          autoComplete="new-password"
+          className="text-3xl absolute left-[-9999px]"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Enter your email"
