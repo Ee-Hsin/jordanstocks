@@ -93,16 +93,3 @@ export const PORTFOLIO = [
     value: 9779,
   },
 ]
-
-export const letters = [
-  {
-    title: "Bi-Annual Interim Letter 2023",
-    date: "July 2023",
-    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Bi-Annual%20Interim%20Letter%202023.pdf?alt=media&token=1222792f-91c5-46e8-a521-06fdbe9a732a",
-  },
-  {
-    title: "Founding Letter",
-    date: "February 2023",
-    href: "https://firebasestorage.googleapis.com/v0/b/seraya-cd251.appspot.com/o/letters%2FSeraya%20Partnership%20Founding%20Letter.pdf?alt=media&token=f47c67e9-e91f-484d-ba8a-0c897eb6fa6a",
-  },
-]

@@ -14,8 +14,8 @@ export const LettersCard = ({ letter }) => {
         </div>
         <div className="mt-4 items-center space-y-4 text-sm sm:flex sm:space-x-4 sm:space-y-0">
           <Link
-            to={letter.href}
-            target=""
+            to={letter.fileURL}
+            target="_blank"
             className="flex items-center text-gray-500"
           >
             <svg

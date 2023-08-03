@@ -36,18 +36,18 @@ const postDoc = (collectionName, docData, docId) => {
   }
 }
 
-const uploadToStorage = (path, file) => {
+const uploadToStorage = async (path, file) => {
   const storageRef = ref(storage, path) //Path could be letters/Seraya Bi Annual Letter.pdf (they allow spaces I think)
 
-  //TODO: Get download URL after sending and then return that download URL
-  uploadBytes(storageRef, file).then((snapshot) => {
-    getDownloadURL(snapshot.ref).then((downloadURL) => {
-      console.log("File available at", downloadURL)
-    })
-  })
+  //Uploads the file to storage
+  const snapshot = await uploadBytes(storageRef, file)
 
   //TODO: Also may have to handle errors here if there are any, or maybe if they are thrown
   //useQuery will catch them, idk
+
+  //Get download URL after sending and then return that download URL
+  const downloadURL = await getDownloadURL(snapshot.ref)
+  return downloadURL
 }
 
 // Returns current firestore serverTimestamp (unlike regular firebase firestore Timestamp,

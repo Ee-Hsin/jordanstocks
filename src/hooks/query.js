@@ -20,6 +20,13 @@ const useGetPortfolio = () => {
   })
 }
 
+const useGetLetters = () => {
+  return useQuery({
+    queryKey: ["letters"],
+    queryFn: () => getCollection("letters", ["date", "desc"]),
+  })
+}
+
 const usePostEmailList = () => {
   return useMutation({
     mutationFn: (email) =>
@@ -34,16 +41,22 @@ const usePostLetters = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (letter) => {
+    mutationFn: async (letter) => {
       //Must call a function to upload letter to firestore, which returns the downloadURL
 
       // Will need to wait for the storage return...
-      uploadToStorage(`letters/${letter.title}`, letter.file)
+      const downloadURL = await uploadToStorage(
+        `letters/${letter.title}`,
+        letter.file
+      )
 
-      // We remove the file (don't upload that to fireStore)
+      // // We remove the file (don't upload that to fireStore)
+      // delete letter.file
+      // // So we are uploading Title and Date, the fileURL will be added from the backend!
+      // return postDoc("letters", letter)
+
       delete letter.file
-      // So we are uploading Title and Date, the fileURL will be added from the backend!
-      return postDoc("letters", letter)
+      return postDoc("letters", { ...letter, fileURL: downloadURL })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -69,6 +82,7 @@ const usePostPortfolio = () => {
 export {
   useGetBlogPosts,
   useGetPortfolio,
+  useGetLetters,
   usePostEmailList,
   usePostLetters,
   usePostPortfolio,
