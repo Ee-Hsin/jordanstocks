@@ -4,11 +4,12 @@ import { SubscribeBlogComponent } from "../Blog/SubscribeBlogComponent"
 
 export const Footer = () => {
   return (
-    <footer className="text-gray-500 bg-white px-4 py-5 pt-10 max-w-screen-xl mx-auto md:px-8">
+    <footer className="text-gray-500 bg-white px-4 py-5 md:pt-10 max-w-screen-xl mx-auto md:px-8">
       <div className="gap-6 justify-between md:flex">
-        <div className="flex-1">
+        <div className="flex-1 pl-2">
           <div className="max-w-xs">
-            <img src="https://www.floatui.com/logo.svg" className="w-32" />
+            <h3 className="text-indigo-600 font-semibold text-xl">Our Blog</h3>
+            {/* <img src="https://www.floatui.com/logo.svg" className="w-32" /> */}
             {/* <p className="leading-relaxed mt-2 text-[15px]">
               Lorem Ipsum has been the {"industry's"} standard dummy text ever
               since the 1500s.

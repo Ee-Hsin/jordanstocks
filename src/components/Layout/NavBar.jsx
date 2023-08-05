@@ -49,12 +49,15 @@ export const NavBar = () => {
       <div className={`items-center max-w-screen-xl mx-auto md:flex md:px-8`}>
         <div className="flex items-center justify-between py-3 md:py-5 md:block px-4">
           <Link to="/">
-            <img
+            <div className="flex items-center w-[250px] h-[50px]">
+              <h1 className="text-lg md:pt-8">Seraya Investment Partnership</h1>
+            </div>
+            {/* <img
               src="https://www.floatui.com/logo.svg"
               width={120}
               height={50}
               alt="Float UI logo"
-            />
+            /> */}
           </Link>
           <div className="md:hidden">
             <button
@@ -94,7 +97,7 @@ export const NavBar = () => {
           </div>
         </div>
         <div
-          className={`flex-1 pb-3 pt-8 w-[100%] bg-white md:block md:pb-0 md:mt-0 ${
+          className={`flex-1 pb-3 pt-3 md:pt-8 w-[100%] bg-white md:block md:pb-0 md:mt-0 ${
             openNav ? "absolute px-3" : "hidden"
           }`}
         >
@@ -130,7 +133,7 @@ export const NavBar = () => {
                 ) : (
                   <Link
                     to="/signin"
-                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                    className="block py-3 px-4 font-medium text-center text-white bg-green-900 hover:bg-green-800 active:bg-green-800 active:shadow-none rounded-lg shadow md:inline"
                   >
                     Partner Sign In
                   </Link>

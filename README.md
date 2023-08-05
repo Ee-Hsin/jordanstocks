@@ -1,12 +1,15 @@
 # Seraya
 
-TODO tomorrow:
+Till production ready:
 
-1. Stop bots from spamming forms
-2. Double check Cross Site Scripting
-3. Remove the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
-4. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
-5. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
+1. Protect the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
+2. Forgot Password functionality
+3. Firebase rules
+
+TODO:
+
+1. BlogEditor component which is built on top of TextEditor, with Extra info like Title, description etc. TextEditor is only for the main body of the page.
+2. Change the Blog Displayer to not print arrays and to accomodate rich text! (Will have to dangerously set inner HTML so need to watch out)
 
 Additional:
 
@@ -23,22 +26,17 @@ Additional:
 
 <b>Letters Page:</b>
 
-- Letter Editor is just a title, a Javascript date that we select, and an
-  upload PDF section. When form is submitted, we save it as a doc of a collection
-  called 'letters'. Doc will look like this:
-  {title: "2023 Annual Letter", date: "25th July", pdf: "download link" } and we
-  get the downlad link with getDownloadUrl when we upload the PDF file.
+- Make the editing available to only user's with Admin permission
 
 <b>Blog Page:</b>
 
 - Add security to prevent inputs from being injected with HTML
-- Add CAPTCHA to prevent this input from being spammed by robots
 - Add Pagnation once received more blogs
+- Make the editing available to user's with Admin permission
 
 <b>Contact Us Page</b>
 
 - Add security to prevent inputs from being injected with HTML
-- Add a CAPTCHA to prevent form from being spammed by bots
 - Add an input field with standard topics (Interested in investing, want to learn more about the fund, other, etc.)
 
 <b>Footer</b>
@@ -53,7 +51,7 @@ Additional:
 <b>Portfolio Page:</b>
 
 - Add sorting ability (sort by % of portfolio ascending and descending)
-- Make it only available to user's with Admin permission
+- Make the editing available to user's with Admin permission
 
 <b>NavBar</b>
 
@@ -71,8 +69,6 @@ Additional:
 
 (Public -> Contact Us, Email Subscribe, Sign In)
 
-- Honeypot for these public forms (except Sign In)
-
 (Private -> UpdateLetters, UpdateBlogs, UpdatePortfolio)
 
 - HTML check for UpdateLetters
@@ -82,9 +78,9 @@ Additional:
 1. Write Firebase Rules
 
 2. Stopping bots from spamming forms:
-   https://www.mullie.eu/how-to-prevent-form-spam/
+   https://www.mullie.eu/how-to-prevent-form-spam/ ✅ ()
 
-3. HTML Sanitization: https://mobileappcircular.com/securing-your-website-with-html-input-sanitization-5afa91934120
+3. Change from checking for HTML to HTML Sanitization: https://mobileappcircular.com/securing-your-website-with-html-input-sanitization-5afa91934120
 
 Input into Firebase Authentication is handled by Firebase,
 but input into Firestore (such as through subscribe Blog), should be sanitized.

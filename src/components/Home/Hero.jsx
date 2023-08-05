@@ -1,4 +1,5 @@
 //import { useState } from "react";
+import { Link } from "react-router-dom"
 import background from "../../img/MalaysiaRainforest.jpg"
 
 export const Hero = () => {
@@ -14,17 +15,17 @@ export const Hero = () => {
           </h2>
           <p>A long term, business-orientated investment partnership</p>
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
-            <a
-              href=""
+            <Link
+              to="/letters"
               className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
             >
-              {"Let's get started"}
-            </a>
-            <a
-              href=""
+              {"Partnership Letters"}
+            </Link>
+            <Link
+              to="blog"
               className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex"
             >
-              Get access
+              Blog
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -37,11 +38,16 @@ export const Hero = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex-none hidden md:block mt-14 md:mt-0 md:max-w-xl">
-          <img src={background} className=" md:rounded-[25px]" alt="" />
+          <img
+            src={background}
+            className=" md:rounded-[25px]"
+            alt=""
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
