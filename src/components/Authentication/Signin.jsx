@@ -22,7 +22,7 @@ export const SignIn = () => {
 
     setLoading(true)
     signIn(emailRef.current.value, pswRef.current.value)
-      .then((userCredential) => {
+      .then(() => {
         // console.log(userCredential)
         setErr(false)
         setLoading(false)
@@ -112,12 +112,12 @@ export const SignIn = () => {
               </p>
             )}
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                to="/forgotPassword"
                 className="font-semibold text-indigo-600 hover:text-indigo-500"
               >
                 Forgot password?
-              </a>
+              </Link>
             </div>
             <div>
               <button

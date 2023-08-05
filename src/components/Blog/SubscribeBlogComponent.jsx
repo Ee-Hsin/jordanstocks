@@ -62,7 +62,10 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   return (
     <>
       {mutation.isError && (
-        <FailureModal mainMessage="Oops, looks like something went wrong." />
+        <FailureModal
+          mainMessage="Oops, looks like something went wrong."
+          subMessage={mutation.error.message}
+        />
       )}
       {mutation.isLoading ? (
         <Loader small />

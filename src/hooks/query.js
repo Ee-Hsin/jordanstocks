@@ -5,6 +5,7 @@ import {
   postDoc,
   uploadToStorage,
 } from "../hooks/firestore"
+import { useAuth } from "./AuthContext"
 
 const useGetBlogPosts = () => {
   return useQuery({
@@ -79,6 +80,14 @@ const usePostPortfolio = () => {
   })
 }
 
+const useResetPassword = () => {
+  const { resetPassword } = useAuth()
+
+  return useMutation({
+    mutationFn: (email) => resetPassword(email),
+  })
+}
+
 export {
   useGetBlogPosts,
   useGetPortfolio,
@@ -86,4 +95,5 @@ export {
   usePostEmailList,
   usePostLetters,
   usePostPortfolio,
+  useResetPassword,
 }
