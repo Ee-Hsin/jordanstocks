@@ -46,12 +46,12 @@ export const ContactUsForm = () => {
         e.target, //Have to use e.target as opposed to data since emailJs sendForm method requires a HTMLFormElement or query selector. In this case, e.targeti a HTMLFormElement, data is neither.
         import.meta.env.VITE_API_PUBLIC_KEY
       )
-      .then((result) => {
+      .then(() => {
         // console.log(result.text)
         setLoading(false)
         setOpenSuccessModal(true)
       })
-      .catch((error) => {
+      .catch(() => {
         // console.log(error.text)
         setLoading(false)
         setOpenFailureModal(true)

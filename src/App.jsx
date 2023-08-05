@@ -19,6 +19,7 @@ import { useAuth } from "./hooks/AuthContext"
 import { PortfolioPage } from "./pages/PortfolioPage"
 import { FailureModal } from "./components/UI/FailureModal"
 import { ForgotPassword } from "./components/Authentication/ForgotPassword"
+import { SignUp } from "./components/Authentication/SignUp"
 
 function App() {
   const queryClient = new QueryClient()
@@ -42,6 +43,7 @@ function App() {
           }
         />
         <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="forgotPassword" element={<ForgotPassword />} />
       </Route>
     )

@@ -3,8 +3,14 @@
 Till production ready:
 
 1. Protect the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
-2. Forgot Password functionality
-3. Firebase rules
+2. Firebase rules
+
+User Issue Dilemna:
+
+- Do I create the userDoc from signIn, or from
+  createUser.
+- So basically debate is do either create and update on every login, OR create only on sign in.
+- I will also need to figure out deleting the UserDoc everytime a user is deleted (this will require firebase functions tho)
 
 TODO:
 
