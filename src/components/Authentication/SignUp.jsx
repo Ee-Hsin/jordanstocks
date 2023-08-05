@@ -3,8 +3,11 @@ import { useCreateUser } from "../../hooks/query"
 import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
 import { Navigate } from "react-router-dom"
+import { useAuth } from "../../hooks/AuthContext"
+
 export const SignUp = () => {
   const mutation = useCreateUser()
+  const { user } = useAuth()
 
   const {
     register,
@@ -15,10 +18,26 @@ export const SignUp = () => {
 
   const onSubmit = (data, e) => {
     e.preventDefault()
-
+    //Don't allow submit if there is a user
+    if (user) return
     mutation.mutate(data)
-
     reset()
+  }
+
+  //Navigates to /portfolio page after user is logged in
+  if (mutation.isSuccess) return <Navigate to="/portfolio" />
+
+  // Protects form for when User is alr signed in
+  if (user) {
+    return (
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            You are already Logged in!
+          </h2>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -29,7 +48,6 @@ export const SignUp = () => {
           subMessage={mutation.error.message}
         />
       )}
-      {mutation.isSuccess && <Navigate to="/portfolio" />}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Partner Sign Up

@@ -80,12 +80,21 @@ const usePostPortfolio = () => {
   })
 }
 
+//TODO: Do I create the userdoc here (from OnSuccess?) for SignIn or CreateUser?
+
+const useSignIn = () => {
+  const { signIn } = useAuth()
+
+  return useMutation({
+    mutationFn: ({ email, password }) => signIn(email, password),
+  })
+}
+
 const useCreateUser = () => {
   const { createUser } = useAuth()
 
   return useMutation({
     mutationFn: ({ email, password }) => createUser(email, password),
-    //TODO: Do I create the userdoc here (from OnSuccess?), OR
   })
 }
 const useResetPassword = () => {
@@ -103,6 +112,7 @@ export {
   usePostEmailList,
   usePostLetters,
   usePostPortfolio,
+  useSignIn,
   useCreateUser,
   useResetPassword,
 }

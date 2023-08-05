@@ -1,39 +1,30 @@
-import { useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
-import { useNavigate } from "react-router-dom"
 import { Loader } from "../UI/Loader"
+import { useSignIn } from "../../hooks/query"
+import { useForm } from "react-hook-form"
 
 export const SignIn = () => {
-  const emailRef = useRef("")
-  const pswRef = useRef("")
-  const [err, setErr] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-  const { signIn, user } = useAuth()
+  const { user } = useAuth()
+  const mutation = useSignIn()
 
-  const handleSubmit = (e) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm()
+
+  const onSubmit = (data, e) => {
     e.preventDefault()
-
-    if (!emailRef.current.value) return
-    if (!pswRef.current.value) return
-    // Another layer of protection against user signing in when alr signed in
+    //Ensure user can't sign in when already signed in
     if (user) return
-
-    setLoading(true)
-    signIn(emailRef.current.value, pswRef.current.value)
-      .then(() => {
-        // console.log(userCredential)
-        setErr(false)
-        setLoading(false)
-        navigate("/portfolio")
-      })
-      .catch((err) => {
-        console.log(err)
-        setErr(true)
-        setLoading(false)
-      })
+    mutation.mutate(data)
+    reset()
   }
+
+  //Navigates to portfolio page when user is signed in
+  if (mutation.isSuccess) return <Navigate to="/portfolio" />
 
   // Protects form for when User is alr signed in
   if (user) {
@@ -61,10 +52,10 @@ export const SignIn = () => {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        {loading ? (
+        {mutation.isLoading ? (
           <Loader />
         ) : (
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
                 htmlFor="email"
@@ -78,10 +69,14 @@ export const SignIn = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  required
-                  ref={emailRef}
+                  {...register("email", { required: "Email is required" })}
                   className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <p role="alert" className="text-red-500">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -100,13 +95,23 @@ export const SignIn = () => {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
-                  ref={pswRef}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password is at least 6 characters long",
+                    },
+                  })}
                   className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.password && (
+                  <p role="alert" className="text-red-500">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
             </div>
-            {err && (
+            {mutation.isError && (
               <p className="text-red-400">
                 Your username or password is incorrect
               </p>
