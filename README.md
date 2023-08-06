@@ -4,7 +4,7 @@ Till production ready:
 
 1. Protect the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
 
-- Now have userDetails, concerned about it clearing after sign out (will it clear?)
+- userDetails will now clear when user logs out
 - Will it update after Sign Up (when entirely new doc is created) ? I have tried with Sign In but not Sign Up Yet. ✅
 
 2. Firebase rules

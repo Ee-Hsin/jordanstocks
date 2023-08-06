@@ -3,12 +3,12 @@ import { LettersDisplay } from "../components/Letters/LettersDisplay"
 import { useAuth } from "../hooks/AuthContext"
 
 export const LettersPage = () => {
-  const { user } = useAuth()
+  const { userDetails } = useAuth()
 
   return (
     <>
+      {userDetails?.isAdmin && <AddLetters />}
       <LettersDisplay />
-      {user && <AddLetters />}
     </>
   )
 }
