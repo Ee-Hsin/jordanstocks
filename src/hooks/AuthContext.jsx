@@ -6,12 +6,14 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth"
-import { auth } from "../firebase"
+import { onSnapshot, doc } from "firebase/firestore"
+import { auth, db } from "../firebase"
 
 const UserContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState()
+  const [userDetails, setUserDetails] = useState()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
@@ -26,6 +28,19 @@ export const AuthContextProvider = ({ children }) => {
 
     return () => unsubscribe()
   }, [])
+
+  //Attaches the user document to listen for changes in the document
+  useEffect(() => {
+    //Ensures user is signed in
+    if (user?.uid) {
+      const unsubscribe = onSnapshot(doc(db, "users", user.uid), (userDoc) => {
+        setUserDetails({ ...userDoc.data(), uid: user.uid })
+        console.log({ ...userDoc.data(), uid: user.uid })
+      })
+
+      return () => unsubscribe()
+    }
+  }, [user])
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
@@ -45,7 +60,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ createUser, signIn, resetPassword, user, logOut }}
+      value={{ createUser, signIn, resetPassword, user, userDetails, logOut }}
     >
       {children}
     </UserContext.Provider>

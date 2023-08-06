@@ -80,8 +80,6 @@ const usePostPortfolio = () => {
   })
 }
 
-//TODO: Do I create the userdoc here (from OnSuccess?) for SignIn or CreateUser?
-
 const useSignIn = () => {
   const { signIn } = useAuth()
 
@@ -90,11 +88,24 @@ const useSignIn = () => {
   })
 }
 
+//Creates the user doc on creation
 const useCreateUser = () => {
   const { createUser } = useAuth()
 
   return useMutation({
     mutationFn: ({ email, password }) => createUser(email, password),
+    //Think about what info we want to keep on the user doc.
+    onSuccess: (cred) =>
+      postDoc(
+        "users",
+        {
+          isAdmin: false, //Set isAdmin to false by default on creation, and they can be updated
+          //via the firebase console afterward
+          email: cred.user.email,
+          emailVerified: cred.user.emailVerified,
+        },
+        cred.user.uid
+      ),
   })
 }
 const useResetPassword = () => {
