@@ -1,19 +1,16 @@
 # Seraya
 
+To Deploy:
+"firebase deploy --only hosting"
+
 Till production ready:
 
-1. Protect the editing letters and editing portfolio (so will need the user in firestore with admin permissions)
-
-- userDetails will now clear when user logs out
-- Will it update after Sign Up (when entirely new doc is created) ? I have tried with Sign In but not Sign Up Yet. ✅
-
-2. Firebase rules
+1. Firebase rules
+2. Write proper blogs ✅
+3. Disable Sign Ups in Firebase
 
 User Issue Dilemna:
 
-- Do I create the userDoc from signIn, or from
-  createUser.
-- So basically debate is do either create and update on every login, OR create only on sign in.
 - I will also need to figure out deleting the UserDoc everytime a user is deleted (this will require firebase functions tho)
 
 TODO:

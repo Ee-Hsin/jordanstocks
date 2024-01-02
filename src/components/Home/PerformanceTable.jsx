@@ -6,7 +6,7 @@ export const PerformanceTable = () => {
       <div className="max-w-lg">
         <h3 className="text-indigo-600 font-semibold text-xl">Performance</h3>
         <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-          Parternship Returns dated 30th June 2023
+          Parternship Returns dated 31st December 2023
         </h3>
         <p className="text-gray-600 mt-2">
           {`It has not been long since the fund's inception. In the context of our 3-5 year investment horizons, the results below are not all that meaningful. 

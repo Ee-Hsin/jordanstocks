@@ -40,8 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 
       return () => unsubscribe()
     } else {
-      //Empty userDetails
-      console.log("bruh")
+      //Empties userDetails when logout
       setUserDetails()
     }
   }, [user])
