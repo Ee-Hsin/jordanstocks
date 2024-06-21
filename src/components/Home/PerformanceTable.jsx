@@ -18,7 +18,7 @@ export const PerformanceTable = () => {
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
               <th className="py-3 px-6 text-left">From:</th>
-              <th className="py-3 px-6">Seraya Investment Partnership</th>
+              <th className="py-3 px-6">Burung Investment Partnership</th>
               <th className="py-3 px-6">S&P 500 Stock Market Index</th>
             </tr>
           </thead>
@@ -29,7 +29,7 @@ export const PerformanceTable = () => {
                   {item.from}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {item.serayaPerf}
+                  {item.burungPerf}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {item.sp500Perf}

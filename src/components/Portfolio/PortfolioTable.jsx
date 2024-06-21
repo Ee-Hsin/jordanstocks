@@ -30,9 +30,9 @@ export const PortfolioTable = () => {
       <div className="max-w-lg">
         <h3 className="text-indigo-600 font-semibold text-xl">Holdings</h3>
         <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-          Seraya Portfolio Holdings{" "}
+          Burung Portfolio Holdings{" "}
           <small className="text-lg text-indigo-500">
-            (Updated June 30th 2023)
+            (Updated December 31st 2023)
           </small>
         </h3>
         <p className="text-gray-600 mt-2">

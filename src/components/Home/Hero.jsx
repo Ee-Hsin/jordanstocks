@@ -11,7 +11,7 @@ export const Hero = () => {
             Modern Value Investing
           </h1> */}
           <h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
-            Seraya Investment Partnership
+            Burung Investment Partnership
           </h2>
           <p>A long term, business-orientated investment partnership</p>
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">

@@ -79,7 +79,7 @@ export const ContactUsForm = () => {
               Get in touch
             </p>
             <p>
-              Interested in becoming a partner, or have any questions? Please
+              Have any questions? Please
               fill out the form below, and {"we'll"} get back to you within 3-5
               working days.
             </p>

@@ -38,17 +38,17 @@ export const STRATEGYSECTION = [
 export const PERFORMANCEFIGURES = [
   {
     from: "December 31st 2022:",
-    serayaPerf: "49.88%",
+    burungPerf: "49.88%",
     sp500Perf: "24.73%",
   },
   {
     from: "Inception (September 2nd 2022):",
-    serayaPerf: "33.57%",
+    burungPerf: "33.57%",
     sp500Perf: "21.55%",
   },
   {
     from: "Annualized since Inception:",
-    serayaPerf: "24.47%",
+    burungPerf: "24.47%",
     sp500Perf: "15.90%",
   },
 ]

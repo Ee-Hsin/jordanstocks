@@ -50,7 +50,7 @@ export const NavBar = () => {
         <div className="flex items-center justify-between py-3 md:py-5 md:block px-4">
           <Link to="/">
             <div className="flex items-center w-[250px] h-[50px]">
-              <h1 className="text-lg md:pt-8">Seraya Investment Partnership</h1>
+              <h1 className="text-lg md:pt-8">Burung Investment Partnership</h1>
             </div>
             {/* <img
               src="https://www.floatui.com/logo.svg"
@@ -135,7 +135,7 @@ export const NavBar = () => {
                     to="/signin"
                     className="block py-3 px-4 font-medium text-center text-white bg-green-900 hover:bg-green-800 active:bg-green-800 active:shadow-none rounded-lg shadow md:inline"
                   >
-                    Partner Sign In
+                    Sign In
                   </Link>
                 )}
               </li>
