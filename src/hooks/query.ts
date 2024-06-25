@@ -7,7 +7,11 @@ import {
 } from "./firestore"
 import { useAuth } from "./AuthContext"
 import { BlogPost, Portfolio, PortfolioStock } from "../types/modelTypes"
-import { QuerySnapshot, DocumentData } from "firebase/firestore"
+import {
+  QuerySnapshot,
+  DocumentData,
+  DocumentReference,
+} from "firebase/firestore"
 
 // Assuming getCollection is defined somewhere and you import it
 // Adjust this function or create a new one that converts QuerySnapshot to BlogPost[]
@@ -25,16 +29,19 @@ const useGetBlogPosts = () => {
 
 // Function to fetch and transform portfolio data
 const fetchPortfolio = async (): Promise<Portfolio> => {
-  const snapshot: QuerySnapshot<DocumentData> = await getCollection("portfolio", ["value", "desc"]);
-  const stocks = snapshot.docs.map(doc => ({
+  const snapshot: QuerySnapshot<DocumentData> = await getCollection(
+    "portfolio",
+    ["value", "desc"]
+  )
+  const stocks = snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...doc.data() as PortfolioStock
-  }));
-  return { stocks } as Portfolio;  // Assuming Portfolio is structured as { stocks: PortfolioStock[] }
-};
+    ...(doc.data() as PortfolioStock),
+  }))
+  return { stocks } as Portfolio // Assuming Portfolio is structured as { stocks: PortfolioStock[] }
+}
 
 const useGetPortfolio = () => {
-  return useQuery<Portfolio, Error>(["portfolio"], fetchPortfolio);
+  return useQuery<Portfolio, Error>(["portfolio"], fetchPortfolio)
 }
 
 const useGetTransactions = () => {
@@ -93,14 +100,30 @@ const usePostLetters = () => {
 const usePostPortfolio = () => {
   const queryClient = useQueryClient()
 
-  return useMutation({
-    mutationFn: (stock) => postDoc("portfolio", stock, stock.ticker),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["portfolio"],
-      })
-    },
-  })
+  //We call postDoc which is a function that posts a document to the firestore
+  //it either uses setDoc or addDoc depending on if the doc already exists
+  //setDoc returns Promise<void> and addDoc returns Promise<DocumentReference<DocumentData>>
+  //so we can return either of those from the mutation
+  return useMutation<
+    DocumentReference<DocumentData> | void,
+    Error,
+    PortfolioStock,
+    unknown
+  >(
+    // Define the mutation function directly as the first argument
+    (stock: PortfolioStock) => postDoc("portfolio", stock, stock.ticker),
+    {
+      // Define the success and error callbacks in the options object
+      onSuccess: () => {
+        // Invalidate and refetch the portfolio data
+        queryClient.invalidateQueries(["portfolio"])
+      },
+      onError: (error) => {
+        // Handle errors here, if necessary
+        console.error("Mutation error:", error)
+      },
+    }
+  )
 }
 
 const usePostTransactions = () => {
