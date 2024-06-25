@@ -9,14 +9,12 @@ export const SingleBlog = () => {
   const [contents, setContents] = useState({})
 
   useEffect(() => {
-    if (isSuccess) {
-      data.forEach((doc) => {
-        if (doc.id === blogId) {
-          setContents(doc.data())
-        }
-      })
+    // Directly find the blog post with the given id
+    const foundPost = data?.find(post => post.id === blogId);
+    if (foundPost) {
+      setContents(foundPost);
     }
-  }, [isSuccess, data, blogId])
+  }, [data, blogId]);  // React on data or blogId changes
 
   return (
     <div className="py-14">

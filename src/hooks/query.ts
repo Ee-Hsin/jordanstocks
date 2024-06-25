@@ -4,20 +4,36 @@ import {
   getFirestoreTimestamp,
   postDoc,
   uploadToStorage,
-} from "../hooks/firestore"
+} from "./firestore"
 import { useAuth } from "./AuthContext"
+import { BlogPost } from "../types/modelTypes"
+import { QuerySnapshot, DocumentData } from "firebase/firestore"
+
+// Assuming getCollection is defined somewhere and you import it
+// Adjust this function or create a new one that converts QuerySnapshot to BlogPost[]
+const fetchBlogPosts = async (): Promise<BlogPost[]> => {
+  const snapshot: QuerySnapshot<DocumentData> = await getCollection("blogPosts")
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<BlogPost, 'id'>), // Cast the data of each doc to BlogPost
+  }))
+}
 
 const useGetBlogPosts = () => {
-  return useQuery({
-    queryKey: ["blogPosts"],
-    queryFn: () => getCollection("blogPosts"),
-  })
+  return useQuery<BlogPost[], Error>(["blogPosts"], fetchBlogPosts)
 }
 
 const useGetPortfolio = () => {
   return useQuery({
     queryKey: ["portfolio"],
     queryFn: () => getCollection("portfolio", ["value", "desc"]),
+  })
+}
+
+const useGetTransactions = () => {
+  return useQuery({
+    queryKey: ["transactions"],
+    queryFn: () => getCollection("transactions", ["date", "desc"]),
   })
 }
 
@@ -80,6 +96,19 @@ const usePostPortfolio = () => {
   })
 }
 
+const usePostTransactions = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (transaction) => postDoc("transactions", transaction),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["transactions"],
+      })
+    },
+  })
+}
+
 const useSignIn = () => {
   const { signIn } = useAuth()
 
@@ -119,10 +148,12 @@ const useResetPassword = () => {
 export {
   useGetBlogPosts,
   useGetPortfolio,
+  useGetTransactions,
   useGetLetters,
   usePostEmailList,
   usePostLetters,
   usePostPortfolio,
+  usePostTransactions,
   useSignIn,
   useCreateUser,
   useResetPassword,

@@ -21,14 +21,14 @@ export const BlogDisplay = () => {
         <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {isError && <h1>Error: {JSON.stringify(error)}</h1>}
           {isSuccess &&
-            data.docs.map((post) => (
+            data.map((post) => (
               <BlogPreviewCard
                 key={post.id}
                 id={post.id}
-                img={post.data().img}
-                title={post.data().title}
-                date={post.data().date}
-                description={post.data().description}
+                img={post.img}
+                title={post.title}
+                date={post.date}
+                description={post.description}
               />
             ))}
         </ul>

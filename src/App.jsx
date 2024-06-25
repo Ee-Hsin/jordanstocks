@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom"
-import { HomePage } from "./pages/homePage"
+import { HomePage } from "./pages/HomePage"
 import ErrorPage from "./components/Layout/ErrorPage"
 import { LettersPage } from "./pages/LettersPage"
 import { BlogPage } from "./pages/BlogPage"
@@ -20,6 +20,7 @@ import { PortfolioPage } from "./pages/PortfolioPage"
 import { FailureModal } from "./components/UI/FailureModal"
 import { ForgotPassword } from "./components/Authentication/ForgotPassword"
 import { SignUp } from "./components/Authentication/SignUp"
+import { TransactionsPage } from "./pages/TransactionsPage"
 
 function App() {
   const queryClient = new QueryClient()
@@ -42,6 +43,7 @@ function App() {
             </ProtectedAuthRoute>
           }
         />
+        <Route path ="transactions" element={<TransactionsPage />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgotPassword" element={<ForgotPassword />} />
