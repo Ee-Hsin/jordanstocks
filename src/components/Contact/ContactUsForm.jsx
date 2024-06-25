@@ -74,13 +74,13 @@ export const ContactUsForm = () => {
       ) : (
         <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
           <div className="max-w-lg mx-auto space-y-3 sm:text-center">
-            <h3 className="text-indigo-600 font-semibold">Contact Us</h3>
+            <h3 className="text-indigo-600 font-semibold">Contact Me</h3>
             <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
               Get in touch
             </p>
             <p>
               Have any questions? Please
-              fill out the form below, and {"we'll"} get back to you within 3-5
+              fill out the form below, and {"I'll"} get back to you within 3-5
               working days.
             </p>
           </div>

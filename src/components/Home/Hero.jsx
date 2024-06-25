@@ -11,15 +11,15 @@ export const Hero = () => {
             Modern Value Investing
           </h1> */}
           <h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
-            Burung Investment Partnership
+            {"Jordan's"} Investment Portfolio
           </h2>
-          <p>A long term, business-orientated investment partnership</p>
+          <p>A long term, business-orientated stock portfolio </p>
           <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
             <Link
               to="/letters"
               className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
             >
-              {"Partnership Letters"}
+              {"Investment Letters"}
             </Link>
             <Link
               to="blog"

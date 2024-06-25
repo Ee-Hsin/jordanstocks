@@ -78,7 +78,7 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
       {mutation.isSuccess && (
         <SuccessModal
           mainMessage="Subscribed!"
-          subMessage="Thanks for subscribing to our Newsletter!"
+          subMessage="Thanks for subscribing to the Newsletter!"
         />
       )}
     </>
@@ -95,7 +95,7 @@ const FooterSubscribe = ({
 }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <label className="block pt-4 pb-2">Subscribe to our Blog</label>
+      <label className="block pt-4 pb-2">Subscribe to the Blog</label>
       <div className="max-w-sm flex items-center border rounded-md p-1">
         {/* 这是一个蜜罐 */}
         <label className="font-medium absolute left-[-9999px]">Address</label>

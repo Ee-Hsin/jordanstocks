@@ -7,13 +7,13 @@ export const Strategy = () => {
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="max-w-xl space-y-3 mb-5">
           <h3 className="text-indigo-600 font-semibold text-xl">
-            Our Strategy
+            The Strategy
           </h3>
           <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Three Simple Steps
           </p>
           <p>
-            We invest in high quality companies at reasonable prices and hold
+            Invest in high quality businesses at reasonable prices and hold
             for the long run.
           </p>
         </div>

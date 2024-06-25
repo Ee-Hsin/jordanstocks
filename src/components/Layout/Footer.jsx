@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="gap-6 justify-between md:flex">
         <div className="flex-1 pl-2">
           <div className="max-w-xs">
-            <h3 className="text-indigo-600 font-semibold text-xl">Our Blog</h3>
+            <h3 className="text-indigo-600 font-semibold text-xl">Blog</h3>
             {/* <img src="https://www.floatui.com/logo.svg" className="w-32" /> */}
             {/* <p className="leading-relaxed mt-2 text-[15px]">
               Lorem Ipsum has been the {"industry's"} standard dummy text ever

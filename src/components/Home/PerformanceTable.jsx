@@ -6,11 +6,11 @@ export const PerformanceTable = () => {
       <div className="max-w-lg">
         <h3 className="text-indigo-600 font-semibold text-xl">Performance</h3>
         <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-          Parternship Returns dated 31st December 2023
+          Portfolio Returns dated 31st December 2023
         </h3>
         <p className="text-gray-600 mt-2">
-          {`It has not been long since the fund's inception. In the context of our 3-5 year investment horizons, the results below are not all that meaningful. 
-              We hope you take them with a grain of salt.`}
+          {`In the context of a 3-5 year investment horizon, the results below are not all that meaningful. 
+              Please take them with a grain of salt.`}
         </p>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
@@ -18,7 +18,7 @@ export const PerformanceTable = () => {
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
               <th className="py-3 px-6 text-left">From:</th>
-              <th className="py-3 px-6">Burung Investment Partnership</th>
+              <th className="py-3 px-6">My Portfolio</th>
               <th className="py-3 px-6">S&P 500 Stock Market Index</th>
             </tr>
           </thead>

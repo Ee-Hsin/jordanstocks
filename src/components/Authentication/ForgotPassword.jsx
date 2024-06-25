@@ -68,7 +68,7 @@ export const ForgotPassword = () => {
               >
                 Email address{" "}
                 <small className="text-sm font-semibold leading-6 text-indigo-500">
-                  {"(we'll send you a password reset link)"}
+                  {"you'll receive a password reset link)"}
                 </small>
               </label>
               <div className="mt-2">

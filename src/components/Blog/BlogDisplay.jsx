@@ -14,7 +14,7 @@ export const BlogDisplay = () => {
             Latest blog posts
           </h1>
           <p className="text-gray-600">
-            Keep up to date with our latest investment ideas
+            Keep up to date with my latest investment ideas
           </p>
           <SubscribeBlogComponent variant="blog" />
         </div>

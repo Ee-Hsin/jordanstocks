@@ -25,12 +25,12 @@ export const STRATEGYSECTION = [
   },
   {
     title: "Pay good prices",
-    desc: "A great company can be a bad investment if we pay too much, we aim to buy great companies at reasonable prices",
+    desc: "A great company can be a bad investment if we pay too much, aim to buy great companies at reasonable prices",
     img: coinsImg,
   },
   {
     title: "Hold for the long run",
-    desc: "We invest with a 3-5 year time horizon. We limit our annual turnover to 20-33%. This compares to most active funds with turnover ratios over 100%!",
+    desc: "Invest with a 3-5 year time horizon and limit annual turnover to 20-33%",
     img: watchImg,
   },
 ]
@@ -55,7 +55,7 @@ export const PERFORMANCEFIGURES = [
 
 export const FOOTERNAVS = [
   {
-    label: "Partnership",
+    label: "Resources",
     items: [
       {
         href: "/letters",
@@ -68,7 +68,7 @@ export const FOOTERNAVS = [
     ],
   },
   {
-    label: "Resources",
+    label: "Get In Touch",
     items: [
       {
         href: "/signin",
@@ -76,7 +76,7 @@ export const FOOTERNAVS = [
       },
       {
         href: "/contact",
-        name: "Contact Us",
+        name: "Contact Me",
       },
     ],
   },

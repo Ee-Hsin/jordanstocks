@@ -141,7 +141,7 @@ export const SignIn = () => {
             to="/contact"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
-            Contact Us
+            Contact Me
           </Link>{" "}
           for more information
         </p>
