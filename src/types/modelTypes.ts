@@ -42,6 +42,10 @@ export interface Letter {
     fileURL: string;
 }
 
+export interface Portfolio {
+    stocks: PortfolioStock[];
+}
+
 export interface PortfolioStock {
     company: string;
     conversionRate: number;

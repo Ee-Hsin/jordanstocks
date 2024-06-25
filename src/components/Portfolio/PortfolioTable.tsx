@@ -1,29 +1,35 @@
 // import { PORTFOLIO } from "../../content"
+import { useEffect, useState } from "react"
 import { useGetPortfolio } from "../../hooks/query"
 import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
 import { addCommas } from "../usefulFunctions/usefulFunctions"
+import { PortfolioStock } from "../../types/modelTypes"
+
+interface PortfolioStockWithPercent extends PortfolioStock {
+  percent: number
+}
 
 export const PortfolioTable = () => {
   const { isLoading, isError, isSuccess, data, error } = useGetPortfolio()
 
-  // TODO: Eventually move these into state
-  let PORTFOLIO_SUM = 0
-  let generatedPortfolio = []
+  const [portfolioSum, setPortfolioSum] = useState<number>(0)
+  const [generatedPortfolio, setGeneratedPortfolio] = useState<
+    PortfolioStockWithPercent[]
+  >([])
 
-  if (isSuccess) {
-    data.forEach((stock) => {
-      const stockData = stock.data()
-      PORTFOLIO_SUM += stockData.value
-    })
+  useEffect(() => {
+    if (isSuccess && data) {
+      const sum = data.stocks.reduce((acc, stock) => acc + stock.value, 0)
+      const stocksWithPercentField = data.stocks.map((stock) => ({
+        ...stock,
+        percent: (stock.value * 100) / sum,
+      }))
 
-    generatedPortfolio = data.docs.map((stock) => {
-      return {
-        ...stock.data(),
-        percent: (stock.data().value * 100) / PORTFOLIO_SUM,
-      }
-    })
-  }
+      setPortfolioSum(sum)
+      setGeneratedPortfolio(stocksWithPercentField)
+    }
+  }, [data, isSuccess])
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-5">
@@ -99,7 +105,7 @@ export const PortfolioTable = () => {
               <td className="px-6 py-4 whitespace-nowrap">-</td>
               <td className="px-6 py-4 whitespace-nowrap">-</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                ${addCommas(PORTFOLIO_SUM)}
+                ${addCommas(portfolioSum)}
               </td>
               {isSuccess && (
                 <td className="px-6 py-4 whitespace-nowrap">100%</td>

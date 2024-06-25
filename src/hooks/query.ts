@@ -6,7 +6,7 @@ import {
   uploadToStorage,
 } from "./firestore"
 import { useAuth } from "./AuthContext"
-import { BlogPost } from "../types/modelTypes"
+import { BlogPost, Portfolio, PortfolioStock } from "../types/modelTypes"
 import { QuerySnapshot, DocumentData } from "firebase/firestore"
 
 // Assuming getCollection is defined somewhere and you import it
@@ -15,7 +15,7 @@ const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   const snapshot: QuerySnapshot<DocumentData> = await getCollection("blogPosts")
   return snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...(doc.data() as Omit<BlogPost, 'id'>), // Cast the data of each doc to BlogPost
+    ...(doc.data() as Omit<BlogPost, "id">), // Cast the data of each doc to BlogPost
   }))
 }
 
@@ -23,11 +23,18 @@ const useGetBlogPosts = () => {
   return useQuery<BlogPost[], Error>(["blogPosts"], fetchBlogPosts)
 }
 
+// Function to fetch and transform portfolio data
+const fetchPortfolio = async (): Promise<Portfolio> => {
+  const snapshot: QuerySnapshot<DocumentData> = await getCollection("portfolio", ["value", "desc"]);
+  const stocks = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data() as PortfolioStock
+  }));
+  return { stocks } as Portfolio;  // Assuming Portfolio is structured as { stocks: PortfolioStock[] }
+};
+
 const useGetPortfolio = () => {
-  return useQuery({
-    queryKey: ["portfolio"],
-    queryFn: () => getCollection("portfolio", ["value", "desc"]),
-  })
+  return useQuery<Portfolio, Error>(["portfolio"], fetchPortfolio);
 }
 
 const useGetTransactions = () => {
