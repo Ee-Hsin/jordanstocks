@@ -12,6 +12,7 @@ import {
   PortfolioStock,
   Letter,
   ModifiedLetter,
+  EmailSubscription,
 } from "../types/modelTypes"
 import {
   QuerySnapshot,
@@ -70,29 +71,42 @@ const fetchLetters = async (): Promise<Letter[]> => {
 const useGetLetters = () => {
   return useQuery<Letter[], Error>(["letters"], fetchLetters)
 }
+//next function to do
+// const usePostEmailList = () => {
+//   return useMutation({
+//     mutationFn: (email) =>
+//       postDoc("emailList", {
+//         subscribedAt: getFirestoreTimestamp(),
+//         email: email,
+//       }),
+//   })
+// }
 
 const usePostEmailList = () => {
-  return useMutation({
-    mutationFn: (email) =>
+  return useMutation<void | DocumentReference<DocumentData>, Error, string>(
+    (email: string) =>
       postDoc("emailList", {
         subscribedAt: getFirestoreTimestamp(),
         email: email,
-      }),
-  })
+      })
+  )
 }
-
 
 const usePostLetters = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<DocumentReference<DocumentData> | void, Error, ModifiedLetter>(
+  return useMutation<
+    DocumentReference<DocumentData> | void,
+    Error,
+    ModifiedLetter
+  >(
     async (letter) => {
       // Upload file to storage and get the download URL
       const downloadURL = await uploadToStorage(
         `letters/${letter.title}`,
         letter.file
       )
-      const letterData: Letter= {
+      const letterData: Letter = {
         title: letter.title,
         date: letter.date,
         fileURL: downloadURL,

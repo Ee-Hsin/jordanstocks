@@ -5,7 +5,13 @@ import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
 import { checkForNoHTML } from "../usefulFunctions/usefulFunctions"
 
-export const SubscribeBlogComponent = ({ variant = "footer" }) => {
+interface SubscribeBlogComponentProps {
+  variant: "footer" | "blog"
+}
+
+export const SubscribeBlogComponent: React.FC<SubscribeBlogComponentProps> = ({
+  variant = "footer",
+}) => {
   const [email, setEmail] = useState("")
   const [hasHtmlError, setHasHtmlError] = useState(false)
   /* 这是一个蜜罐 */
@@ -13,7 +19,7 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
 
   const mutation = usePostEmailList()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     /* 这是一个蜜罐 */
@@ -85,7 +91,16 @@ export const SubscribeBlogComponent = ({ variant = "footer" }) => {
   )
 }
 
-const FooterSubscribe = ({
+//for both footer and blog subscribe
+interface SubscribeProps {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  username: string; // This is a honeypot field
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const FooterSubscribe: React.FC<SubscribeProps> = ({
   handleSubmit,
   email,
   setEmail,
@@ -103,7 +118,7 @@ const FooterSubscribe = ({
           type="text"
           name="username"
           placeholder="Your Username"
-          tabIndex="-1"
+          tabIndex={-1}
           autoComplete="new-password"
           className="text-3xl absolute left-[-9999px]"
           value={username}
@@ -125,7 +140,7 @@ const FooterSubscribe = ({
   )
 }
 
-const BlogPageSubscribe = ({
+const BlogPageSubscribe: React.FC<SubscribeProps> = ({
   handleSubmit,
   email,
   setEmail,
@@ -159,7 +174,7 @@ const BlogPageSubscribe = ({
           type="text"
           name="username"
           placeholder="Your Username"
-          tabIndex="-1"
+          tabIndex={-1}
           autoComplete="new-password"
           className="text-3xl absolute left-[-9999px]"
           value={username}
