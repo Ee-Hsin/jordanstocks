@@ -69,3 +69,7 @@ export interface User {
     emailVerified: boolean;
 }
 
+export interface SignInCredentials {
+    email: string;
+    password: string;
+  }

@@ -5,6 +5,12 @@ import {
   postDoc,
   uploadToStorage,
 } from "./firestore"
+import {
+  QuerySnapshot,
+  DocumentData,
+  DocumentReference,
+} from "firebase/firestore"
+import { UserCredential } from "firebase/auth"
 import { useAuth } from "./AuthContext"
 import {
   BlogPost,
@@ -12,13 +18,8 @@ import {
   PortfolioStock,
   Letter,
   ModifiedLetter,
-  EmailSubscription,
+  SignInCredentials,
 } from "../types/modelTypes"
-import {
-  QuerySnapshot,
-  DocumentData,
-  DocumentReference,
-} from "firebase/firestore"
 
 const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   const snapshot: QuerySnapshot<DocumentData> = await getCollection("blogPosts")
@@ -170,16 +171,24 @@ const usePostTransactions = () => {
 const useSignIn = () => {
   const { signIn } = useAuth()
 
-  return useMutation({
-    mutationFn: ({ email, password }) => signIn(email, password),
-  })
+  return useMutation<UserCredential, Error, SignInCredentials>(
+    ({ email, password }) => signIn(email, password),
+    {
+      onError: (error) => {
+        console.error("Login failed:", error)
+      },
+      onSuccess: (userCredential) => {
+        console.log("Login successful:", userCredential)
+      },
+    }
+  )
 }
 
 //Creates the user doc on creation
 const useCreateUser = () => {
   const { createUser } = useAuth()
 
-  return useMutation({
+  return useMutation<UserCredential, Error, SignInCredentials>({
     mutationFn: ({ email, password }) => createUser(email, password),
     //Think about what info we want to keep on the user doc.
     onSuccess: (cred) =>
