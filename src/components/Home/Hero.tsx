@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import background from "../../img/MalaysiaRainforest.jpg"
 
-export const Hero = () => {
+export const Hero: React.FC = () => {
   return (
     <section className="pt-16 pb-12 md:py-24 md:pb-20">
       <div className="max-w-screen-xl mx-auto text-gray-600 gap-x-12 items-center justify-normal overflow-hidden md:flex md:px-8">

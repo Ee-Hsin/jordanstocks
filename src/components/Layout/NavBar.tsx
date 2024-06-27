@@ -3,14 +3,19 @@ import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
 import { useMediaPredicate } from "react-media-hook"
 
-const navigation = [
+interface NavigationItem {
+  title: string;
+  path: string;
+}
+
+const navigation: NavigationItem[] = [
   { title: "Letters", path: "/letters" },
   { title: "Blog", path: "/blog" },
   { title: "Contact Us", path: "/contact" },
 ]
 
-export const NavBar = () => {
-  const [openNav, setOpenNav] = useState(false)
+export const NavBar: React.FC = () => {
+  const [openNav, setOpenNav] = useState<boolean>(false)
   const mediumAndAbove = useMediaPredicate("(min-width: 768px)")
   const location = useLocation()
   const { user, logOut } = useAuth()
@@ -30,7 +35,7 @@ export const NavBar = () => {
     scrollToTop()
   }, [location])
 
-  const handleSignOut = () => {
+  const handleSignOut = async (): Promise<void> => {
     logOut()
       .then(() => {
         // console.log("Logged out")
@@ -40,7 +45,7 @@ export const NavBar = () => {
       })
   }
 
-  const scrollToTop = () => {
+  const scrollToTop = (): void => {
     window.scrollTo({ top: 0, left: 0 })
   }
 

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { FOOTERNAVS } from "../../content"
 import { SubscribeBlogComponent } from "../Blog/SubscribeBlogComponent"
+import React from 'react';
+import { NavSection } from "../../types/contentTypes";
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="text-gray-500 bg-white px-4 py-5 md:pt-10 max-w-screen-xl mx-auto md:px-8">
       <div className="gap-6 justify-between md:flex">
@@ -18,7 +20,7 @@ export const Footer = () => {
           <SubscribeBlogComponent variant={"footer"} />
         </div>
         <div className="hidden flex-1 mt-10 space-y-6 items-center justify-evenly sm:flex md:space-y-0 md:mt-0">
-          {FOOTERNAVS.map((item, idx) => (
+          {FOOTERNAVS.map((item: NavSection, idx: number) => (
             <ul className="space-y-4" key={idx}>
               <h4 className="text-gray-800 font-medium">{item.label}</h4>
               {item.items.map((el, idx) => (

@@ -1,8 +1,13 @@
 import castleMoatImg from "./img/CastleMoat.jpg"
 import watchImg from "./img/WatchResized.jpg"
 import coinsImg from "./img/CoinsResized.jpg"
+import {
+  NavSection,
+  StrategyItem,
+  PerformanceFigure,
+} from "./types/contentTypes"
 
-export const MONTHNAMES = [
+export const MONTHNAMES: string[] = [
   "January",
   "February",
   "March",
@@ -17,7 +22,7 @@ export const MONTHNAMES = [
   "December",
 ]
 
-export const STRATEGYSECTION = [
+export const STRATEGYSECTION: StrategyItem[] = [
   {
     title: "Identify Great Companies",
     desc: "Great companies generate high returns on capital and have wide economic moats to protect those returns",
@@ -35,7 +40,7 @@ export const STRATEGYSECTION = [
   },
 ]
 
-export const PERFORMANCEFIGURES = [
+export const PERFORMANCEFIGURES: PerformanceFigure[] = [
   {
     from: "December 31st 2022:",
     burungPerf: "49.88%",
@@ -53,7 +58,7 @@ export const PERFORMANCEFIGURES = [
   },
 ]
 
-export const FOOTERNAVS = [
+export const FOOTERNAVS: NavSection[] = [
   {
     label: "Resources",
     items: [
@@ -82,29 +87,29 @@ export const FOOTERNAVS = [
   },
 ]
 
-export const PORTFOLIO = [
-  {
-    company: "Meta Platforms Inc",
-    ticker: "META",
-    units: 110,
-    price: 286.98,
-    currency: "USD",
-    value: 31567,
-  },
-  {
-    company: "Alphabet Inc.",
-    ticker: "GOOGL",
-    units: 181,
-    price: 119.7,
-    currency: "USD",
-    value: 21665,
-  },
-  {
-    company: "Adobe Inc",
-    ticker: "ADBE",
-    units: 20,
-    price: 488.99,
-    currency: "USD",
-    value: 9779,
-  },
-]
+// export const PORTFOLIO = [
+//   {
+//     company: "Meta Platforms Inc",
+//     ticker: "META",
+//     units: 110,
+//     price: 286.98,
+//     currency: "USD",
+//     value: 31567,
+//   },
+//   {
+//     company: "Alphabet Inc.",
+//     ticker: "GOOGL",
+//     units: 181,
+//     price: 119.7,
+//     currency: "USD",
+//     value: 21665,
+//   },
+//   {
+//     company: "Adobe Inc",
+//     ticker: "ADBE",
+//     units: 20,
+//     price: 488.99,
+//     currency: "USD",
+//     value: 9779,
+//   },
+// ]

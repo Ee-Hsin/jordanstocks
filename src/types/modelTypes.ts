@@ -25,7 +25,7 @@ export interface Transaction {
 export interface BlogPost {
     id: string;
     title: string;
-    content: [string];
+    content: string[];
     date: string;
     description: string;
     img: string;

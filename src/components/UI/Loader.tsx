@@ -1,4 +1,12 @@
-export const Loader = ({ small = false, className = "" }) => {
+interface LoaderProps {
+  small?: boolean
+  className?: string
+}
+
+export const Loader: React.FC<LoaderProps> = ({
+  small = false,
+  className = "",
+}) => {
   return (
     <div className="flex w-full justify-center">
       <div

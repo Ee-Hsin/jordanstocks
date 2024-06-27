@@ -13,14 +13,14 @@ export const Strategy = () => {
             Three Simple Steps
           </p>
           <p>
-            Invest in high quality businesses at reasonable prices and hold
-            for the long run.
+            Invest in high quality businesses at reasonable prices and hold for
+            the long run.
           </p>
         </div>
         <div className="mt-2">
           <ul className="grid gap-x-12 divide-y [&>.feature-1]:pl-0 sm:grid-cols-2 sm:gap-y-8 sm:divide-y-0 lg:divide-x lg:grid-cols-3 lg:gap-x-0">
             {STRATEGYSECTION.map((strat, idx) => (
-              <StrategyCard {...strat} idx key={idx} />
+              <StrategyCard {...strat} idx={idx} key={idx} />
             ))}
           </ul>
         </div>

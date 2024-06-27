@@ -1,4 +1,9 @@
 {
+  "include": [
+    "src/**/*",
+    "custom.d.ts",
+    "vite-env.d.ts"
+  ],
   "compilerOptions": {
     "target": "es2016",
     "module": "ESNext",
@@ -14,7 +19,8 @@
   },
   "exclude": [
     "node_modules",
-    "*.eslintrc.cjs"  // Exclude the ESLint config file
+    "*.eslintrc.cjs",  // Exclude the ESLint config file
+    "dist"  //  Typically exclude the output directory to avoid recursive compilation issues
   ]
 }
 

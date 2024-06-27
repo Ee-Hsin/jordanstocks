@@ -1,7 +1,12 @@
 import { useRouteError, Link } from "react-router-dom"
 
+interface RouteError {
+  statusText?: string
+  message?: string
+}
+
 export default function ErrorPage() {
-  const error = useRouteError()
+  const error = useRouteError() as RouteError | null // Cast to the type defined above
   console.error(error)
 
   return (
@@ -9,7 +14,7 @@ export default function ErrorPage() {
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>{error ? error.statusText || error.message : "Unknown Error"}</i>
       </p>
       <Link to="/">Click here to GO back to the main page</Link>
     </div>

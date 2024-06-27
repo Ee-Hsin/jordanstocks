@@ -2,30 +2,34 @@ import emailjs from "@emailjs/browser"
 import { useState } from "react"
 import { SuccessModal } from "../UI/SuccessModal"
 import { FailureModal } from "../UI/FailureModal"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Loader } from "../UI/Loader"
 
-export const ContactUsForm = () => {
-  const [openSuccessModal, setOpenSuccessModal] = useState(false)
-  const [openFailureModal, setOpenFailureModal] = useState(false)
-  const [loading, setLoading] = useState(false)
+interface FormData {
+  firstName: string
+  lastName: string
+  email: string
+  message: string
+}
+
+export const ContactUsForm: React.FC = () => {
+  const [openSuccessModal, setOpenSuccessModal] = useState<boolean>(false)
+  const [openFailureModal, setOpenFailureModal] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   /* 这是一个蜜罐 */
-  const [address, setAddress] = useState("")
+  const [address, setAddress] = useState<string>("")
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm()
+  } = useForm<FormData>()
 
-  const onSubmit = (data, e) => {
-    // console.log(e)
-    // console.log(data)
+  const onSubmit: SubmitHandler<FormData> = (data, e) => {
+    if (!e) return;
     setLoading(true)
-    //Resetting them just in case the user submitted more than 1 form in a row without
-    //refreshing the page (meaning )
     setOpenSuccessModal(false)
     setOpenFailureModal(false)
 
@@ -43,7 +47,7 @@ export const ContactUsForm = () => {
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
-        e.target, //Have to use e.target as opposed to data since emailJs sendForm method requires a HTMLFormElement or query selector. In this case, e.targeti a HTMLFormElement, data is neither.
+        e.target as HTMLFormElement, //Have to use e.target as opposed to data since emailJs sendForm method requires a HTMLFormElement or query selector. In this case, e.targeti a HTMLFormElement, data is neither.
         import.meta.env.VITE_API_PUBLIC_KEY
       )
       .then(() => {
@@ -79,9 +83,8 @@ export const ContactUsForm = () => {
               Get in touch
             </p>
             <p>
-              Have any questions? Please
-              fill out the form below, and {"I'll"} get back to you within 3-5
-              working days.
+              Have any questions? Please fill out the form below, and {"I'll"}{" "}
+              get back to you within 3-5 working days.
             </p>
           </div>
           <div className="mt-12 max-w-lg mx-auto">
@@ -96,7 +99,7 @@ export const ContactUsForm = () => {
                     type="text"
                     name="address"
                     placeholder="Your Address"
-                    tabIndex="-1"
+                    tabIndex={-1}
                     autoComplete="new-password"
                     className="text-3xl absolute left-[-9999px]"
                     value={address}

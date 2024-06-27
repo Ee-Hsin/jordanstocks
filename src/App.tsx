@@ -43,7 +43,7 @@ function App() {
             </ProtectedAuthRoute>
           }
         />
-        <Route path ="transactions" element={<TransactionsPage />} />
+        <Route path="transactions" element={<TransactionsPage />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgotPassword" element={<ForgotPassword />} />
@@ -58,7 +58,7 @@ function App() {
   )
 }
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <>
       {/* <ResponsiveNavBar /> */}
@@ -70,7 +70,13 @@ const Layout = () => {
   )
 }
 
-const ProtectedAuthRoute = ({ children }) => {
+interface ProtectedAuthRouteProps {
+  children: React.ReactNode
+}
+
+const ProtectedAuthRoute: React.FC<ProtectedAuthRouteProps> = ({
+  children,
+}) => {
   const { user } = useAuth()
 
   if (!user) {
@@ -80,7 +86,7 @@ const ProtectedAuthRoute = ({ children }) => {
       />
     )
   } else {
-    return children
+    return <>{children}</>
   }
 }
 

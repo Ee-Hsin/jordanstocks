@@ -8,22 +8,39 @@ import {
   addDoc,
   doc,
   serverTimestamp,
+  DocumentData,
+  QuerySnapshot,
+  OrderByDirection,
+  DocumentReference,
+  Timestamp,
+  FieldValue
 } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 
-// Order Query is optional and should be an array []
-const getCollection = (collectionName, orderQuery) => {
+//TO Address: async in ChatGPT
+const getCollection = async (
+  collectionName: string,
+  orderQuery?: [string, OrderByDirection]
+): Promise<QuerySnapshot<DocumentData>> => {
   let q = query(collection(db, collectionName))
 
-  if (orderQuery) {
-    q = query(collection(db, collectionName), orderBy(...orderQuery))
+  if (orderQuery && orderQuery.length === 2) {
+    q = query(
+      collection(db, collectionName),
+      orderBy(orderQuery[0], orderQuery[1])
+    )
   }
   return getDocs(q)
 }
 
 // For adding NEW docs.
 // DO NOT use for updating docs unless you specify a docId.
-const postDoc = (collectionName, docData, docId) => {
+//TO Address: async in ChatGPT
+const postDoc = async (
+  collectionName: string,
+  docData: DocumentData,
+  docId?: string
+): Promise<void | DocumentReference<DocumentData>> => {
   // For if we provide a custom docId
   if (docId) {
     return setDoc(doc(db, collectionName, docId), docData)
@@ -34,7 +51,10 @@ const postDoc = (collectionName, docData, docId) => {
   }
 }
 
-const uploadToStorage = async (path, file) => {
+const uploadToStorage = async (
+  path: string,
+  file: Blob | Uint8Array | ArrayBuffer
+): Promise<string> => {
   const storageRef = ref(storage, path) //Path could be letters/Seraya Bi Annual Letter.pdf (they allow spaces I think)
 
   //Uploads the file to storage
@@ -50,12 +70,12 @@ const uploadToStorage = async (path, file) => {
 
 // Returns current firestore serverTimestamp (unlike regular firebase firestore Timestamp,
 // it cannot be read or converted to a date until it is fetched back from firestore)
-const getFirestoreTimestamp = () => {
+const getFirestoreTimestamp = (): FieldValue => {
   return serverTimestamp()
 }
 
 // Converts to javascript timestamp
-const convertFirestoreTimestamp = (timestamp) => {
+const convertFirestoreTimestamp = (timestamp: Timestamp): Date => {
   return timestamp.toDate()
 }
 

@@ -1,6 +1,6 @@
 //import { useState } from "react";
 
-import { useRef } from "react"
+import { useRef, FormEvent } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
 import { useResetPassword } from "../../hooks/query"
@@ -8,15 +8,15 @@ import { FailureModal } from "../UI/FailureModal"
 import { SuccessModal } from "../UI/SuccessModal"
 import { Loader } from "../UI/Loader"
 
-export const ForgotPassword = () => {
-  const emailRef = useRef("")
+export const ForgotPassword: React.FC = () => {
+  const emailRef = useRef<HTMLInputElement>(null)
   const { user } = useAuth()
   const mutation = useResetPassword()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!emailRef.current.value) return
+    if (!emailRef.current?.value) return
     // Another layer of protection against user changing password when alr signed in
     if (user) return
 

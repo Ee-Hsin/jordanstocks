@@ -155,6 +155,7 @@ const usePostPortfolio = () => {
   )
 }
 
+//New function, do last.
 const usePostTransactions = () => {
   const queryClient = useQueryClient()
 
@@ -207,9 +208,9 @@ const useCreateUser = () => {
 const useResetPassword = () => {
   const { resetPassword } = useAuth()
 
-  return useMutation({
-    mutationFn: (email) => resetPassword(email),
-  })
+  return useMutation<void, Error, string>((email: string) =>
+    resetPassword(email)
+  )
 }
 
 export {

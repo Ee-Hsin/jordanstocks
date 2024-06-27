@@ -2,9 +2,14 @@ import { Link, Navigate } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
 import { Loader } from "../UI/Loader"
 import { useSignIn } from "../../hooks/query"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 
-export const SignIn = () => {
+interface SignInFormData {
+  email: string;
+  password: string;
+}
+
+export const SignIn: React.FC = () => {
   const { user } = useAuth()
   const mutation = useSignIn()
 
@@ -13,10 +18,9 @@ export const SignIn = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm()
+  } = useForm<SignInFormData>()
 
-  const onSubmit = (data, e) => {
-    e.preventDefault()
+  const onSubmit: SubmitHandler<SignInFormData> = (data) => {
     //Ensure user can't sign in when already signed in
     if (user) return
     mutation.mutate(data)
@@ -66,7 +70,6 @@ export const SignIn = () => {
               <div className="mt-2">
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
                   {...register("email", { required: "Email is required" })}
@@ -92,7 +95,6 @@ export const SignIn = () => {
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="current-password"
                   {...register("password", {

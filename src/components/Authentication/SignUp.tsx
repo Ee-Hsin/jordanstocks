@@ -1,9 +1,14 @@
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { useCreateUser } from "../../hooks/query"
 import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../../hooks/AuthContext"
+
+interface SignUpFormData {
+  email: string
+  password: string
+}
 
 export const SignUp = () => {
   const mutation = useCreateUser()
@@ -14,10 +19,9 @@ export const SignUp = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm()
+  } = useForm<SignUpFormData>()
 
-  const onSubmit = (data, e) => {
-    e.preventDefault()
+  const onSubmit: SubmitHandler<SignUpFormData> = (data) => {
     //Don't allow submit if there is a user
     if (user) return
     mutation.mutate(data)
@@ -26,7 +30,7 @@ export const SignUp = () => {
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      {mutation.isError && (
+      {mutation.isError && mutation.error?.message && (
         <FailureModal
           mainMessage="Oops, looks like something went wrong."
           subMessage={mutation.error.message}
@@ -53,7 +57,6 @@ export const SignUp = () => {
               <div className="mt-2">
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
                   {...register("email", {
@@ -81,7 +84,6 @@ export const SignUp = () => {
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="new-password"
                   {...register("password", {

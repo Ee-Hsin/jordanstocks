@@ -2,7 +2,7 @@ import { useState } from "react"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 
-export const TextEditor = () => {
+export const TextEditor: React.FC = () => {
   const [value, setValue] = useState("")
 
   return (

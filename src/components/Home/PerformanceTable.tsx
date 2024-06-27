@@ -1,6 +1,6 @@
 import { PERFORMANCEFIGURES } from "../../content"
 
-export const PerformanceTable = () => {
+export const PerformanceTable: React.FC = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mb-5">
       <div className="max-w-lg">

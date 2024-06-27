@@ -4,7 +4,7 @@ import { PortfolioTable } from "../components/Portfolio/PortfolioTable"
 import { UpdatePortfolio } from "../components/Portfolio/UpdatePortfolio"
 import { useAuth } from "../hooks/AuthContext"
 
-export const PortfolioPage = () => {
+export const PortfolioPage: React.FC = () => {
   const { userDetails } = useAuth()
 
   return (
