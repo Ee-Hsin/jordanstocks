@@ -2,7 +2,7 @@ import { useGetLetters } from "../../hooks/query"
 import { Loader } from "../UI/Loader"
 import { LettersCard } from "./LettersCard"
 
-export const LettersDisplay = () => {
+export const LettersDisplay: React.FC = () => {
   const { isLoading, isError, isSuccess, data, error } = useGetLetters()
 
   return (
@@ -16,8 +16,8 @@ export const LettersDisplay = () => {
       {isError && <h1>Error: {JSON.stringify(error)}</h1>}
       {isSuccess && (
         <ul className="mt-12 space-y-6">
-          {data.docs.map((letter, idx) => (
-            <LettersCard letter={letter.data()} key={idx} />
+          {data.map((letter, idx) => (
+            <LettersCard letter={letter} key={idx} />
           ))}
         </ul>
       )}

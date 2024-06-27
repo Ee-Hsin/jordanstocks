@@ -42,6 +42,13 @@ export interface Letter {
     fileURL: string;
 }
 
+//Needed to create this interface for the usePostLetters because that
+//function takes in a file and sends
+//out a fileUrl (which matches the type Letter)
+export interface ModifiedLetter extends Omit<Letter, 'fileURL'> {
+    file: File;
+  }
+
 export interface Portfolio {
     stocks: PortfolioStock[];
 }

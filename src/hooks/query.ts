@@ -6,15 +6,19 @@ import {
   uploadToStorage,
 } from "./firestore"
 import { useAuth } from "./AuthContext"
-import { BlogPost, Portfolio, PortfolioStock } from "../types/modelTypes"
+import {
+  BlogPost,
+  Portfolio,
+  PortfolioStock,
+  Letter,
+  ModifiedLetter,
+} from "../types/modelTypes"
 import {
   QuerySnapshot,
   DocumentData,
   DocumentReference,
 } from "firebase/firestore"
 
-// Assuming getCollection is defined somewhere and you import it
-// Adjust this function or create a new one that converts QuerySnapshot to BlogPost[]
 const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   const snapshot: QuerySnapshot<DocumentData> = await getCollection("blogPosts")
   return snapshot.docs.map((doc) => ({
@@ -44,6 +48,7 @@ const useGetPortfolio = () => {
   return useQuery<Portfolio, Error>(["portfolio"], fetchPortfolio)
 }
 
+//New function, do last.
 const useGetTransactions = () => {
   return useQuery({
     queryKey: ["transactions"],
@@ -51,11 +56,19 @@ const useGetTransactions = () => {
   })
 }
 
+const fetchLetters = async (): Promise<Letter[]> => {
+  const snapshot: QuerySnapshot<DocumentData> = await getCollection("letters", [
+    "date",
+    "desc",
+  ])
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<Letter, "id">), // Assuming 'Letter' doesn't have 'id' in its interface
+  }))
+}
+
 const useGetLetters = () => {
-  return useQuery({
-    queryKey: ["letters"],
-    queryFn: () => getCollection("letters", ["date", "desc"]),
-  })
+  return useQuery<Letter[], Error>(["letters"], fetchLetters)
 }
 
 const usePostEmailList = () => {
@@ -68,33 +81,34 @@ const usePostEmailList = () => {
   })
 }
 
+
 const usePostLetters = () => {
   const queryClient = useQueryClient()
 
-  return useMutation({
-    mutationFn: async (letter) => {
-      //Must call a function to upload letter to firestore, which returns the downloadURL
-
-      // Will need to wait for the storage return...
+  return useMutation<DocumentReference<DocumentData> | void, Error, ModifiedLetter>(
+    async (letter) => {
+      // Upload file to storage and get the download URL
       const downloadURL = await uploadToStorage(
         `letters/${letter.title}`,
         letter.file
       )
-
-      // // We remove the file (don't upload that to fireStore)
-      // delete letter.file
-      // // So we are uploading Title and Date, the fileURL will be added from the backend!
-      // return postDoc("letters", letter)
-
-      delete letter.file
-      return postDoc("letters", { ...letter, fileURL: downloadURL })
+      const letterData: Letter= {
+        title: letter.title,
+        date: letter.date,
+        fileURL: downloadURL,
+      }
+      return postDoc("letters", letterData)
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["letters"],
-      })
-    },
-  })
+    {
+      onSuccess: () => {
+        // Invalidate and refetch the letters query to update the UI
+        queryClient.invalidateQueries(["letters"])
+      },
+      onError: (error) => {
+        console.error("Mutation error:", error)
+      },
+    }
+  )
 }
 
 const usePostPortfolio = () => {

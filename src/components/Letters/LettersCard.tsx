@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom"
 import { MONTHNAMES } from "../../content"
+import { Letter } from "../../types/modelTypes" // Ensure this is imported
 
-export const LettersCard = ({ letter }) => {
+// LettersCard.tsx
+interface LettersCardProps {
+  letter: Letter
+}
+
+export const LettersCard: React.FC<LettersCardProps> = ({ letter }) => {
   return (
     <li className="p-5 bg-white rounded-md shadow-sm">
       <div>
