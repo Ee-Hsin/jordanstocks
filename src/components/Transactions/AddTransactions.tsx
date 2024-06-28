@@ -51,7 +51,7 @@ export const AddTransactions: React.FC = () => {
         <div className="mt-12 max-w-lg mx-auto">
           <div className="space-y-5 sm:text-center sm:max-w-md sm:mx-auto my-5">
             <h1 className="text-indigo-600 text-3xl font-extrabold sm:text-4xl">
-              Add Stocks
+              Add Transactions
             </h1>
           </div>
           <form

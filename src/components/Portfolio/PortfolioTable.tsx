@@ -43,7 +43,7 @@ export const PortfolioTable = () => {
         </h3>
         <p className="text-gray-600 mt-2">
           {`Units held, prices, and exchange rates are based on information accurate 
-          only to 30th June 2023`}
+          only to December 31st 2023`}
         </p>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">

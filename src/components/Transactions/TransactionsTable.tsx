@@ -8,15 +8,15 @@ import { formatDate } from "../usefulFunctions/usefulFunctions"
 // Function to generate display names for each currency
 function generateCurrencyDisplayNames(): Record<Currency, string> {
   const entries = Object.entries(Currency).map(([key, value]) => {
-    return [value, `${key}`];
-  });
-  return Object.fromEntries(entries);
+    return [value, `${key}`]
+  })
+  return Object.fromEntries(entries)
 }
 
-const CurrencyDisplayNames = generateCurrencyDisplayNames();
+const CurrencyDisplayNames = generateCurrencyDisplayNames()
 
 interface TransactionWithDisplayData extends Transaction {
-  displayCurrency: string;
+  displayCurrency: string
 }
 
 export const TransactionsTable: React.FC = () => {
@@ -41,8 +41,6 @@ export const TransactionsTable: React.FC = () => {
     }
   }, [transactions, isSuccess])
 
-  console.log(formattedTransactions)
-
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-5">
       <div className="max-w-lg">
@@ -52,7 +50,9 @@ export const TransactionsTable: React.FC = () => {
         <table className="w-full table-auto text-sm">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
-              <th className="py-3 px-6 text-left">Date</th>
+              <th className="py-3 px-3">
+                Date <a className="text-xs">(YYYY-MM-DD)</a>
+              </th>
               <th className="py-3 px-6">Ticker</th>
               <th className="py-3 px-6">Buy/Sell</th>
               <th className="py-3 px-6">Units</th>
@@ -67,7 +67,7 @@ export const TransactionsTable: React.FC = () => {
             {isSuccess &&
               formattedTransactions.map((transaction, idx) => (
                 <tr key={idx} className="text-center">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-4 whitespace-nowrap">
                     {formatDate(transaction.date.toDate())}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -88,7 +88,7 @@ export const TransactionsTable: React.FC = () => {
                     {transaction.displayCurrency}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {transaction.notes}
+                    {transaction.notes ? transaction.notes.slice(0, 20) : "-"}
                   </td>
                 </tr>
               ))}

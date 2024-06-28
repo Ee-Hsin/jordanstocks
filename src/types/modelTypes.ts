@@ -6,14 +6,15 @@ export enum TransactionType {
   BUY = 1,
 }
 
-const transactionTypeMap: Record<string, TransactionType> = {
-  SELL: TransactionType.SELL,
-  BUY: TransactionType.BUY,
+const transactionTypeMap: Record<number, TransactionType> = {
+  [-1]: TransactionType.SELL,
+  [1]: TransactionType.BUY,
 }
 
-// Utility function to get TransactionType from string
+// Utility function to get TransactionType from number
 export function getTransactionType(type: string): TransactionType | undefined {
-  return transactionTypeMap[type]
+  const numericType = parseInt(type.trim())
+  return transactionTypeMap[numericType]
 }
 
 // Enum for supported currencies
