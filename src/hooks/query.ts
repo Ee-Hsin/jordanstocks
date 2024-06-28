@@ -19,6 +19,7 @@ import {
   Letter,
   ModifiedLetter,
   SignInCredentials,
+  Transaction,
 } from "../types/modelTypes"
 
 const fetchBlogPosts = async (): Promise<BlogPost[]> => {
@@ -50,12 +51,20 @@ const useGetPortfolio = () => {
   return useQuery<Portfolio, Error>(["portfolio"], fetchPortfolio)
 }
 
-//New function, do last.
+// Function to fetch and transform transaction data
+const fetchTransactions = async (): Promise<Transaction[]> => {
+  const snapshot: QuerySnapshot<DocumentData> = await getCollection(
+    "transactions",
+    ["date", "desc"]
+  )
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Transaction),
+  }))
+}
+
 const useGetTransactions = () => {
-  return useQuery({
-    queryKey: ["transactions"],
-    queryFn: () => getCollection("transactions", ["date", "desc"]),
-  })
+  return useQuery<Transaction[], Error>(["transactions"], fetchTransactions)
 }
 
 const fetchLetters = async (): Promise<Letter[]> => {
@@ -72,16 +81,6 @@ const fetchLetters = async (): Promise<Letter[]> => {
 const useGetLetters = () => {
   return useQuery<Letter[], Error>(["letters"], fetchLetters)
 }
-//next function to do
-// const usePostEmailList = () => {
-//   return useMutation({
-//     mutationFn: (email) =>
-//       postDoc("emailList", {
-//         subscribedAt: getFirestoreTimestamp(),
-//         email: email,
-//       }),
-//   })
-// }
 
 const usePostEmailList = () => {
   return useMutation<void | DocumentReference<DocumentData>, Error, string>(
@@ -155,16 +154,19 @@ const usePostPortfolio = () => {
   )
 }
 
-//New function, do last.
 const usePostTransactions = () => {
   const queryClient = useQueryClient()
 
-  return useMutation({
-    mutationFn: (transaction) => postDoc("transactions", transaction),
+  return useMutation<
+    DocumentReference<DocumentData> | void,
+    Error,
+    Transaction
+  >((transaction: Transaction) => postDoc("transactions", transaction), {
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["transactions"],
-      })
+      queryClient.invalidateQueries(["transactions"])
+    },
+    onError: (error: Error) => {
+      console.error("Mutation error:", error)
     },
   })
 }
