@@ -5,6 +5,7 @@ import { FailureModal } from "../UI/FailureModal"
 import { Loader } from "../UI/Loader"
 import { addCommas } from "../usefulFunctions/usefulFunctions"
 import { PortfolioStock } from "../../types/modelTypes"
+import { LAST_UPDATED_DATE } from "../../content"
 
 interface PortfolioStockWithPercent extends PortfolioStock {
   percent: number
@@ -38,12 +39,12 @@ export const PortfolioTable = () => {
         <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
           {"Jordan's"} Portfolio Holdings{" "}
           <small className="text-lg text-indigo-500">
-            (Updated December 31st 2023)
+            (Updated {LAST_UPDATED_DATE})
           </small>
         </h3>
         <p className="text-gray-600 mt-2">
           {`Units held, prices, and exchange rates are based on information accurate 
-          only to December 31st 2023`}
+          only to ${LAST_UPDATED_DATE}`}
         </p>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">

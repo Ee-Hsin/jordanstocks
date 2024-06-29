@@ -11,7 +11,9 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   { title: "Letters", path: "/letters" },
   { title: "Blog", path: "/blog" },
-  { title: "Contact Us", path: "/contact" },
+  { title: "Contact", path: "/contact" },
+  { title: "Portfolio", path: "/portfolio" },
+  { title: "Transactions", path: "/transactions" },
 ]
 
 export const NavBar: React.FC = () => {
@@ -102,7 +104,7 @@ export const NavBar: React.FC = () => {
           </div>
         </div>
         <div
-          className={`flex-1 pb-3 pt-3 md:pt-8 w-[100%] bg-white md:block md:pb-0 md:mt-0 ${
+          className={`flex-1 pb-3 pt-3 md:pt-8 w-[100%] bg-white md:block md:pb-0 md:mt-0  ${
             openNav ? "absolute px-3" : "hidden"
           }`}
         >
@@ -116,13 +118,6 @@ export const NavBar: React.FC = () => {
                 </li>
               )
             })}
-            {user && (
-              <li className="text-gray-700 hover:text-indigo-600">
-                <Link to={"/portfolio"} className="block">
-                  Portfolio
-                </Link>
-              </li>
-            )}
             <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
             <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
               <li>

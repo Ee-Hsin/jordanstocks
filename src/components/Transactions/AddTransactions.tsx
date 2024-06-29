@@ -32,6 +32,7 @@ export const AddTransactions: React.FC = () => {
       ...data,
       units: Number(data.units),
       price: Number(data.price),
+      transaction: Number(data.transaction),
       date: Timestamp.fromDate(new Date(data.date)), // Convert string to Timestamp
     }
 

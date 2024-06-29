@@ -7,6 +7,10 @@ import {
   PerformanceFigure,
 } from "./types/contentTypes"
 
+export const LAST_UPDATED_DATE: string = "December 31st 2023"
+
+export const TRANSACTION_SKIPS: number = 5
+
 export const MONTHNAMES: string[] = [
   "January",
   "February",

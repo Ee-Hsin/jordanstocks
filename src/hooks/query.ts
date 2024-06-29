@@ -52,10 +52,11 @@ const useGetPortfolio = () => {
 }
 
 // Function to fetch and transform transaction data
-const fetchTransactions = async (): Promise<Transaction[]> => {
+const fetchTransactions = async (skip: number = 0): Promise<Transaction[]> => {
   const snapshot: QuerySnapshot<DocumentData> = await getCollection(
     "transactions",
-    ["date", "desc"]
+    ["date", "desc"],
+    skip
   )
   return snapshot.docs.map((doc) => ({
     id: doc.id,
@@ -63,14 +64,25 @@ const fetchTransactions = async (): Promise<Transaction[]> => {
   }))
 }
 
-const useGetTransactions = () => {
-  return useQuery<Transaction[], Error>(["transactions"], fetchTransactions)
+interface UseGetTransactionsOptions {
+  skip?: number
+}
+
+const useGetTransactions = ({ skip = 0 }: UseGetTransactionsOptions = {}) => {
+  return useQuery<Transaction[], Error>(
+    ["transactions", skip],
+    () => fetchTransactions(skip),
+    {
+      keepPreviousData: true, // Useful for pagination to keep data during loading new data
+      staleTime: 5000, // Adjust based on how frequently your data updates
+    }
+  )
 }
 
 const fetchLetters = async (): Promise<Letter[]> => {
   const snapshot: QuerySnapshot<DocumentData> = await getCollection("letters", [
     "date",
-    "desc",
+    "asc",
   ])
   return snapshot.docs.map((doc) => ({
     id: doc.id,

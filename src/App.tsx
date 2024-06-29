@@ -15,9 +15,9 @@ import { Footer } from "./components/Layout/Footer"
 import { SingleBlog } from "./components/Blog/SingleBlog"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ContactPage } from "./pages/ContactPage"
-import { useAuth } from "./hooks/AuthContext"
+// import { useAuth } from "./hooks/AuthContext"
 import { PortfolioPage } from "./pages/PortfolioPage"
-import { FailureModal } from "./components/UI/FailureModal"
+// import { FailureModal } from "./components/UI/FailureModal"
 import { ForgotPassword } from "./components/Authentication/ForgotPassword"
 import { SignUp } from "./components/Authentication/SignUp"
 import { TransactionsPage } from "./pages/TransactionsPage"
@@ -38,9 +38,9 @@ function App() {
         <Route
           path="portfolio"
           element={
-            <ProtectedAuthRoute>
+            // <ProtectedAuthRoute> // No longer protecting portfolio page
               <PortfolioPage />
-            </ProtectedAuthRoute>
+            // </ProtectedAuthRoute>
           }
         />
         <Route path="transactions" element={<TransactionsPage />} />
@@ -70,24 +70,24 @@ const Layout: React.FC = () => {
   )
 }
 
-interface ProtectedAuthRouteProps {
-  children: React.ReactNode
-}
+// interface ProtectedAuthRouteProps {
+//   children: React.ReactNode
+// }
 
-const ProtectedAuthRoute: React.FC<ProtectedAuthRouteProps> = ({
-  children,
-}) => {
-  const { user } = useAuth()
+// const ProtectedAuthRoute: React.FC<ProtectedAuthRouteProps> = ({
+//   children,
+// }) => {
+//   const { user } = useAuth()
 
-  if (!user) {
-    return (
-      <FailureModal
-        subMessage={"You must sign in to gain access to this page"}
-      />
-    )
-  } else {
-    return <>{children}</>
-  }
-}
+//   if (!user) {
+//     return (
+//       <FailureModal
+//         subMessage={"You must sign in to gain access to this page"}
+//       />
+//     )
+//   } else {
+//     return <>{children}</>
+//   }
+// }
 
 export default App
