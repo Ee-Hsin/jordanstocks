@@ -1,27 +1,30 @@
-# Serayaip.com
+# Jordan's Investment Portfolio
 
-Welcome to the official repository of [Serayaip.com](https://serayaip.com), a dynamic web platform designed for Seraya Investment Partnership, focusing on global equities and providing exclusive resources for the fund's private investors.
+Welcome to the official repository of [Jordan's Investment Portfolio](https://jordanip.com), a dynamic web platform designed to democratize access to investment insights and portfolio analysis.
 
 ## Project Overview
 
-Serayaip.com is a CRUD (Create, Read, Update, Delete) web application, tailored to cater to the specific needs of Seraya Investment Partnership. This platform serves as a comprehensive tool for equity analysis, investor engagement, and portfolio management.
+Jordan's Investment Portfolio is a CRUD (Create, Read, Update, Delete) web application that offers transparent access to investment data and tools for both unregistered and registered users. This platform serves as a comprehensive resource for individual investors interested in tracking and analyzing global equities.
 
 ### Features
 
-- **Blogging Platform**: A space for administrators to publish insights and updates on equity analysis and fund activities.
-- **Authentication System**: Secure login functionality to ensure data privacy and exclusive access for registered users.
-- **Portfolio Tracker**: An intuitive tool for private investors to monitor and manage their investments.
+- **Public Access**: Unregistered users can view holdings and historical transactions to understand investment trends and decisions.
+- **Exclusive Access for Registered Users**: Users who register can access detailed features, including the ability to view the five latest transactions and additional analytical tools.
+- **Blogging Platform**: Administrators can publish insights and updates on market trends, investment strategies, and portfolio updates.
+- **Authentication System**: Features a secure login system to ensure data privacy and exclusive access for registered users.
+- **Portfolio Tracker**: An intuitive tool for investors to monitor and manage their investments effectively.
 
 ### Technology Stack
 
-- **JavaScript & React**: Leveraging React for its efficient, dynamic user interface capabilities, complemented by JavaScript's versatility.
-- **Firebase**: Utilized as the backend solution, Firebase provides a robust database, authentication, and hosting services.
+- **Frontend**: React, TypeScript, TailwindCSS, ESLint, Prettier, and Vite for a modern and responsive user interface.
+- **Backend**: Firebase for robust database management, authentication, and hosting services.
+- **React Query**: Enhances data fetching, caching, and state management across the application.
 
 ### User Interface
 
-- **Responsive Design**: The application is designed to be responsive and user-friendly, ensuring a seamless experience across various devices and screen sizes.
-- **Simplified Management**: Administrators of the fund can easily manage blog content and track portfolio performance, thanks to the intuitive design of the platform.
+- **Responsive Design**: The application is designed to be responsive, ensuring a seamless experience across various devices and screen sizes.
+- **Simplified Management**: Features an intuitive design that allows users to easily navigate through investment data and insights.
 
 ---
 
-Serayaip.com - Streamlining investment insights and portfolio management for Seraya Investment Partnership.
+Visit [Jordan's Investment Portfolio](https://jordanip.com) to explore investment insights and manage your portfolio effectively. Streamlining your investment journey with transparency and technology.
